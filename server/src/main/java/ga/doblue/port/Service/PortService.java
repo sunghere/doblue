@@ -1,8 +1,9 @@
-package kr.or.connect.todo.Service;
+package ga.doblue.port.Service;
 
-import kr.or.connect.todo.model.Todo;
-import kr.or.connect.todo.persistence.TodoDao;
 import org.springframework.stereotype.Service;
+
+import ga.doblue.port.model.Port;
+import ga.doblue.port.persistence.PortDao;
 
 import java.util.List;
 
@@ -10,25 +11,25 @@ import java.util.List;
  * Created by SungHere on 2017-06-02.
  */
 @Service
-public class TodoService {
-    private TodoDao dao;
+public class PortService {
+    private PortDao dao;
 
 
-    public TodoService(TodoDao dao) {
+    public PortService(PortDao dao) {
         this.dao = dao;
     }
 
-    public boolean create(Todo todo) {
+    public boolean create(Port todo) {
         int result = dao.create(todo);
         return result > 0;
     }
 
-    public List<Todo> listAll() {
+    public List<Port> listAll() {
 
         return dao.listAll();
     }
 
-    public boolean complete(Todo todo) {
+    public boolean complete(Port todo) {
         int result = dao.complete(todo);
         return result == 1;
     }

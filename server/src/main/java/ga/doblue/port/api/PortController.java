@@ -1,12 +1,13 @@
-package kr.or.connect.todo.api;
+package ga.doblue.port.api;
 
-import kr.or.connect.todo.Service.TodoService;
-import kr.or.connect.todo.help.AjaxResult;
-import kr.or.connect.todo.model.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import ga.doblue.port.Service.PortService;
+import ga.doblue.port.help.AjaxResult;
+import ga.doblue.port.model.Port;
 
 import java.util.List;
 
@@ -15,22 +16,22 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/todos")
-public class TodoController { /* Rest 컨트롤러 */
-    private final TodoService service;
+public class PortController { /* Rest 컨트롤러 */
+    private final PortService service;
 
     @Autowired
-    public TodoController(TodoService service) {
+    public PortController(PortService service) {
         this.service = service;
     }
 
     @GetMapping
-    List<Todo> todoList() {
+    List<Port> todoList() {
         return service.listAll();
     }
 
 
     @PostMapping/* Insert (할일 추가 ) */
-    ResponseEntity<?> create(@RequestBody Todo todo) {
+    ResponseEntity<?> create(@RequestBody Port todo) {
         AjaxResult ajaxResult = new AjaxResult();
 
         if (service.create(todo)) {
@@ -45,7 +46,7 @@ public class TodoController { /* Rest 컨트롤러 */
     }
 
     @PutMapping(value = "/{id}", consumes = "application/json") /* 할일 완료 여부 */
-    ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Todo todo) {
+    ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Port todo) {
         todo.setId(id);
         AjaxResult ajaxResult = new AjaxResult();
         if (service.complete(todo)) {
