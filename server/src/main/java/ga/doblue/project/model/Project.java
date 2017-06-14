@@ -1,4 +1,4 @@
-package ga.doblue.port.model;
+package ga.doblue.project.model;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by SungHere on 2017-06-02.
  */
 
-public class Port implements Serializable {
+public class Project implements Serializable {
 
     private int seq;
     private String url="";
@@ -17,8 +17,8 @@ public class Port implements Serializable {
     private String edate="";
     private int completed;
 
-    public Port(int seq, String url, String img, String title, String content, String sdate, String edate,
-			int completed) {
+    public Project(int seq, String url, String img, String title, String content, String sdate, String edate,
+				   int completed) {
 		super();
 		this.seq = seq;
 		this.url = url;
@@ -100,7 +100,7 @@ public class Port implements Serializable {
 		this.completed = completed;
 	}
 
-	public Port() {
+	public Project() {
     }
 
   

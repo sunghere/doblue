@@ -1,4 +1,4 @@
-package ga.doblue.port.persistence;
+package ga.doblue.project.persistence;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import ga.doblue.port.PortApplication;
-import ga.doblue.port.model.Port;
+import ga.doblue.project.ProjectApplication;
+import ga.doblue.project.model.Project;
 
 import java.util.List;
 
@@ -28,16 +28,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = PortApplication.class)
+@ContextConfiguration(classes = ProjectApplication.class)
 @WebAppConfiguration
 @Transactional
-public class PortControllerTest {
+public class ProjectControllerTest {
 
     @Autowired
     WebApplicationContext wac;
     MockMvc mvc;
+
     @Autowired
-    PortDao dao;
+    ProjectDAO dao;
 
     @Before
     public void setUp() {
@@ -48,10 +49,10 @@ public class PortControllerTest {
 
     @Test
     public void shouldCreate() throws Exception {
-        String requestBody = "{\"todo\":\"할일추가 테스트\"}";
+        String requestBody = "{\"content\":\"프로젝트 추가 테스트\"}";
 
         mvc.perform(
-                post("/api/todos/")
+                post("/api/projects/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody)
         )
@@ -64,7 +65,7 @@ public class PortControllerTest {
         String requestBody = "{\"completed\":\"1\"}";
 
         mvc.perform(
-                put("/api/todos/1")
+                put("/api/projects/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody)
         )
@@ -74,15 +75,15 @@ public class PortControllerTest {
     @Test
     public void shouldDelete() throws Exception {
         mvc.perform(
-                delete("/api/todos/1")
+                delete("/api/projects/1")
                         .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void shouldSelectAll() {
-        List<Port> list = dao.listAll();
+    public void shouldSelectAll() throws Exception {
+        List<Project> list = dao.listAll();
         assertThat(list, is(notNullValue()));
     }
 

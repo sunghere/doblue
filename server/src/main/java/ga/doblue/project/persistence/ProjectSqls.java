@@ -1,6 +1,6 @@
-package ga.doblue.port.persistence;
+package ga.doblue.project.persistence;
 
-public class PortSqls {
+public class ProjectSqls {
     /*todos 삭제*/
     static final String DELETE_BY_SEQ =
             "UPDATE port SET del= :del WHERE seq= :seq";
