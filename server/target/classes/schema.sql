@@ -1,6 +1,9 @@
-CREATE TABLE IF NOT EXISTS todo (
-  id        INT IDENTITY NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  todo      TEXT,
-  completed INT(1)       NOT NULL             DEFAULT 0,
-  date      TIMESTAMP    NOT NULL             DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS PORT (
+  seq      INT PRIMARY KEY AUTO_INCREMENT,
+  url      varchar(2000),
+  img      varchar(2000)  NOT NULL,
+  title      varchar(1000)  NOT NULL,
+  content      varchar(4000)  NOT NULL,
+  sdate      varchar(20)    NOT NULL,  
+  edate      varchar(20)    NOT NULL  
 );
