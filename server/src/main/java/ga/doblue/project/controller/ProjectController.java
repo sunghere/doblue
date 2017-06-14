@@ -1,4 +1,4 @@
-package ga.doblue.project.api;
+package ga.doblue.project.controller;
 
 import ga.doblue.project.Service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by SungHere on 2017-06-02.
  */
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping("/project")
 public class ProjectController { /* Rest 컨트롤러 */
 
     @Autowired
