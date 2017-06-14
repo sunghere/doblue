@@ -1,5 +1,7 @@
 package ga.doblue.project.persistence;
 
+import ga.doblue.project.ProjectApplication;
+import ga.doblue.project.model.Project;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,20 +14,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import ga.doblue.project.ProjectApplication;
-import ga.doblue.project.model.Project;
-
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ProjectApplication.class)
