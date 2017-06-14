@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS PORT (
+CREATE TABLE IF NOT EXISTS PROJECT (
   seq      INT PRIMARY KEY AUTO_INCREMENT,
   url      varchar(2000),
   img      varchar(2000)  NOT NULL,
@@ -11,5 +11,3 @@ CREATE TABLE IF NOT EXISTS PORT (
 );
 drop table PORT;
 select * from PORT
-
-commit;
