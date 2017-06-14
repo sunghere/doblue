@@ -1,7 +1,5 @@
-package kr.or.connect.todo.persistence;
+package ga.doblue.port.persistence;
 
-import kr.or.connect.todo.TodoApplication;
-import kr.or.connect.todo.model.Todo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +11,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
+
+import ga.doblue.port.PortApplication;
+import ga.doblue.port.model.Port;
 
 import java.util.List;
 
@@ -27,16 +28,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = TodoApplication.class)
+@ContextConfiguration(classes = PortApplication.class)
 @WebAppConfiguration
 @Transactional
-public class TodoControllerTest {
+public class PortControllerTest {
 
     @Autowired
     WebApplicationContext wac;
     MockMvc mvc;
     @Autowired
-    TodoDao dao;
+    PortDao dao;
 
     @Before
     public void setUp() {
@@ -81,7 +82,7 @@ public class TodoControllerTest {
 
     @Test
     public void shouldSelectAll() {
-        List<Todo> list = dao.listAll();
+        List<Port> list = dao.listAll();
         assertThat(list, is(notNullValue()));
     }
 

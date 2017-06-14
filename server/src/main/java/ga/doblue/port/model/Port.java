@@ -1,4 +1,4 @@
-package kr.or.connect.todo.model;
+package ga.doblue.port.model;
 
 import java.io.Serializable;
 
@@ -6,14 +6,14 @@ import java.io.Serializable;
  * Created by SungHere on 2017-06-02.
  */
 
-public class Todo implements Serializable {
+public class Port implements Serializable {
 
     private int id;
     private String todo;
     private String date;
     private int completed;
 
-    public Todo() {
+    public Port() {
     }
 
     /**
@@ -23,7 +23,7 @@ public class Todo implements Serializable {
      * @param date 날짜 (default TimeStemp)
      * @param completed 완료 여부( default 0) 완료시 1
      */
-    public Todo(int id, String todo, String date, int completed) {
+    public Port(int id, String todo, String date, int completed) {
         this.id = id;
         this.todo = todo;
         this.date = date;

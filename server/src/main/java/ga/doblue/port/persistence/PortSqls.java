@@ -1,6 +1,6 @@
-package kr.or.connect.todo.persistence;
+package ga.doblue.port.persistence;
 
-public class TodoSqls {
+public class PortSqls {
     /*todos 삭제*/
     static final String DELETE_BY_ID =
             "DELETE FROM todo WHERE id= :id";
