@@ -8,67 +8,100 @@ import java.io.Serializable;
 
 public class Port implements Serializable {
 
-    private int id;
-    private String todo;
-    private String date;
+    private int seq;
+    private String url="";
+    private String img="";
+    private String title="";
+    private String content="";
+    private String sdate="";
+    private String edate="";
     private int completed;
 
-    public Port() {
+    public Port(int seq, String url, String img, String title, String content, String sdate, String edate,
+			int completed) {
+		super();
+		this.seq = seq;
+		this.url = url;
+		this.img = img;
+		this.title = title;
+		this.content = content;
+		this.sdate = sdate;
+		this.edate = edate;
+		this.completed = completed;
+	}
+
+	@Override
+	public String toString() {
+		return "Port [seq=" + seq + ", url=" + url + ", img=" + img + ", title=" + title + ", content=" + content
+				+ ", sdate=" + sdate + ", edate=" + edate + ", completed=" + completed + "]";
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getSdate() {
+		return sdate;
+	}
+
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+
+	public String getEdate() {
+		return edate;
+	}
+
+	public void setEdate(String edate) {
+		this.edate = edate;
+	}
+
+	public int getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(int completed) {
+		this.completed = completed;
+	}
+
+	public Port() {
     }
 
-    /**
-     *
-     * @param id 식별자 (기본키)
-     * @param todo, 할일 내용
-     * @param date 날짜 (default TimeStemp)
-     * @param completed 완료 여부( default 0) 완료시 1
-     */
-    public Port(int id, String todo, String date, int completed) {
-        this.id = id;
-        this.todo = todo;
-        this.date = date;
-        this.completed = completed;
-    }
-
-    @Override
-    public String toString() {
-        return "Todo{" +
-                "id=" + id +
-                ", todo='" + todo + '\'' +
-                ", date='" + date + '\'' +
-                ", completed=" + completed +
-                '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTodo() {
-        return todo;
-    }
-
-    public void setTodo(String todo) {
-        this.todo = todo;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public int getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(int completed) {
-        this.completed = completed;
-    }
+  
 }

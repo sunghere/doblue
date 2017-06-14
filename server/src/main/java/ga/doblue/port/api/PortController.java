@@ -15,7 +15,7 @@ import java.util.List;
  * Created by SungHere on 2017-06-02.
  */
 @RestController
-@RequestMapping("/api/todos")
+@RequestMapping("/api/port")
 public class PortController { /* Rest 컨트롤러 */
     private final PortService service;
 
@@ -25,16 +25,16 @@ public class PortController { /* Rest 컨트롤러 */
     }
 
     @GetMapping
-    List<Port> todoList() {
+    List<Port> portList() {
         return service.listAll();
     }
 
 
-    @PostMapping/* Insert (할일 추가 ) */
-    ResponseEntity<?> create(@RequestBody Port todo) {
+    @PostMapping/* Insert (포트폴리오 추가 ) */
+    ResponseEntity<?> create(@RequestBody Port port) {
         AjaxResult ajaxResult = new AjaxResult();
 
-        if (service.create(todo)) {
+        if (service.create(port)) {
             ajaxResult.setResult("SUCS");
 
         } else {
@@ -45,11 +45,11 @@ public class PortController { /* Rest 컨트롤러 */
 
     }
 
-    @PutMapping(value = "/{id}", consumes = "application/json") /* 할일 완료 여부 */
-    ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Port todo) {
-        todo.setId(id);
+    @PutMapping(value = "/{seq}", consumes = "application/json") /* 할일 완료 여부 */
+    ResponseEntity<?> update(@PathVariable Integer seq, @RequestBody Port port) {
+        port.setSeq(seq);
         AjaxResult ajaxResult = new AjaxResult();
-        if (service.complete(todo)) {
+        if (service.complete(port)) {
             ajaxResult.setResult("SUCS");
 
         } else {
@@ -59,11 +59,11 @@ public class PortController { /* Rest 컨트롤러 */
         return new ResponseEntity<AjaxResult>(ajaxResult, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}") /* 할일 삭제 */
-    ResponseEntity<?> delete(@PathVariable Integer id) {
+    @DeleteMapping("/{seq}") /* 할일 삭제 */
+    ResponseEntity<?> delete(@PathVariable Integer seq) {
         AjaxResult ajaxResult = new AjaxResult();
 
-        if (service.delete(id)) {
+        if (service.delete(seq)) {
             ajaxResult.setResult("SUCS");
 
         } else {
