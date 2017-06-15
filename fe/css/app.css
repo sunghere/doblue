@@ -178,3 +178,6 @@ p{
 .nav li {
 	display: inline-block;
 }
+.modal-dialog, .modal-content {
+	height: 90%;
+}

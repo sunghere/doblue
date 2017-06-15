@@ -7,8 +7,10 @@
     <!-- CSS overrides - remove if you don't need it -->
     <link rel="stylesheet" href="css/jquery.fullPage.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+    <link rel="stylesheet" href="css/app.css">
     
 </head>
 <body>
@@ -82,22 +84,54 @@
 		</div>
 	</div>
 </div>
+
 <input type="hidden" data-target='#writeModal' data-toggle='modal' id="write-modal-btn">
 <!-- 프로젝트 업로드 모달 -->
 <div id="writeModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-content-main">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">x</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h3 class="detail-title"></h3>
+                <h3 class="write-title">올려보자</h3>
             </div>
             <div class="modal-body">
-                <div class="row detail-body">
-                    <div class="detail-summary col-sm-12 col-md-4"></div>
-                    <div class="detail-detail col-sm-12 col-md-8"></div>
+                <table>
+                	<tr id="categoryInput">
+                		<td>Category</td>
+                		<td>
+	                		<select class="selectpicker show-tick categorySel">
+		                        <option>웹디자인</option>
+			                	<option>프로그래밍</option>
+			                	<option>내꺼</option>
+			                </select>
+			                <input type="hidden" name="category" id="w_category" value="웹디자인">
+		                </td>
+	                </tr>
+	                <tr id="dateInput">
+	                	<td>Date</td>
+	                	<td>
+	                		<input type="text" id="sdatepicker" placeholder="시작일" name="sdate">
+                			<input type="text" id="edatepicker" placeholder="마감일" name="edate">
+	                	</td>
+	                </tr>
+	                <tr id="titleInput">
+	                	<td>Title</td>
+	                	<td><input type="text" class="" id="w_title" placeholder="제목"></td>
+	                </tr>
+	                <tr id="contentInput">
+	                	<td>Content</td>
+	                	<td><textarea id='write_content'>메인에 올라갈 사진은 맨위꺼&nbsp;</textarea></td>
+	                </tr>
+	                <tr id="urlInput">
+	                	<td>URL</td>
+	                	<td><input type="text" class="" id="w_url" placeholder="연결할 url"></td>
+	                </tr>
+                </table>
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-danger write-btn">등록</button>
                 </div>
             </div>
         </div>
@@ -108,7 +142,7 @@
 <input type="hidden" data-target='#detailModal' data-toggle='modal' id="detail-modal-btn">
 <!-- 디테일 모달 -->
 <div id="detailModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-content-main">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
@@ -129,11 +163,12 @@
 
 <!-- Scripts here. Don't remove ↓ -->
 <script src="js/jquery-3.2.1.js"></script>
-<script src="js/app.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/jquery.fullPage.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/jquery.fullPage.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#fullpage').fullpage({
@@ -148,9 +183,32 @@ $(document).ready(function() {
 	
 	$("#project-write").click(function() {
 		$("#write-modal-btn").click();
+		write_init();
 	});
 	
-	
+	var write_init = function () {
+        CKEDITOR.replace('write_content', {
+            customConfig: 'ckeditor/config.js',
+            width: '100%',
+            height: '300px',
+            filebrowserUploadUrl: 'imageUpload.do',
+        })
+
+    };
+    
+    CKEDITOR.on('dialogDefinition', function (ev) {
+        var dialogName = ev.data.name;
+        var dialog = ev.data.definition.dialog;
+        var dialogDefinition = ev.data.definition;
+        if (dialogName == 'image') {
+            dialog.on('show', function (obj) {
+                this.selectPage('Upload'); //업로드텝으로 시작
+            });
+            dialogDefinition.removeContents('advanced'); // 자세히탭 제거
+            dialogDefinition.removeContents('Link'); // 링크탭 제거
+        }
+    });
+
 });
 </script>
 </body>

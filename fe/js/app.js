@@ -9,7 +9,7 @@
                 var str = '';
                 $.each(data, function (index, val) {
                     str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
-             	   		   '<div class="project-image"></div>'+
+             	   		   '<div class="project-image"><img src="'+val.img+'"></div>'+
              	   		   '<div class="project-content">'+
              	   		   '<div class="project-title">'+ val.title +'</div>'+
              	   		   '<div class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</div>'+
@@ -26,39 +26,100 @@
     /*초기 세팅*/
     project_list_load();
     
-    /* 프로젝트 쓰기 */
-    /*쓰기 버튼 클릭*/
-    var todo_create = function () {
-        var todo_content = $('.new-todo').val();
-        if (todo_content.length < 1 || todo_content == "") {
-
-            alert("추가할 일정을 입력하세요");
-
-            return;
+    /* 프로젝트 등록 */
+    $(".write-btn").click(function() {
+    	var check = true;
+        var category = $('#w_category').attr("value");
+        var sdate = $('#sdatepicker').val();
+        var edate = $('#edatepicker').val();
+        var title = $('#w_title').val();
+        var content = CKEDITOR.instances.write_content.setData('');
+        var img = image_parse(content);
+        var url = $('#w_url').val();
+        if (sdate == null || sdate == '' || edate == null || edate == '') {
+        	$('#dateInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
+        	check = false;
+        }
+        if (title == null || title == '') {
+            $('#titleInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
+            check = false;
+        }
+        if (content.length < 1) {
+            $('#contentInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
+            check = false;
         }
         var object = new Object();
-        object.todo = todo_content;
-        $.ajax({
-            url: "/api/todos",
-            method: "post",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(object),
-            success: function (data) {
-                $('.new-todo').val('')
-                console.log(data.result)
-                if (data.result == "SUCS") {
-                    todo_list_load("");
-                } else {
+        object.category = category;
+        object.sdate = sdate;
+        object.edate = edate;
+        object.title = title;
+        object.content = content;
+        object.img = img;
+        object.url = url;
+        
+        if (check == true) {
+            $.ajax({
+            	url: "/project",
+                method: "post",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(object),
+                success: function (data) {
+                    if (data.result == "SUCS") {
+                    	$('#sdatepicker').val('');
+                    	$('#edatepicker').val('');
+                    	$('#w_title').val('');
+                    	CKEDITOR.instances.write_content.getData();
+                    	$(".write-btn").click();
+                    } else {
+                        alert("실패")
+
+                    }
+                }, fail: function () {
                     alert("실패")
 
                 }
-            }, fail: function () {
-                alert("실패")
+            })
+        } else {
+            showMsg("빈칸이 있어요 전부 입력해주세요");
+        }
+    });
+    
+    /*메인에 뜰 이미지 파싱*/
+    image_parse = function(content) {
+    	var contentArray = [];
+        contentArray = content.split('alt="" src="');
+        if (contentArray[1] != null && contentArray[1] != "") {
+            var src = contentArray[1].split('"');
+            return src[0];
+        } else {
 
-            }
-
-        })
+        }
+        return "";
     }
+    
+    /*카테고리 선택부분*/
+    $('.categorySel').change(function () {
+        $('#w_category').attr('value', $('.categorySel option:selected').text());
+    });
+    
+    var dates = $("#sdatepicker, #edatepicker ").datepicker({
+        dateFormat: "yy-mm-dd",
+        yearSuffix: '년',
+        showOtherMonths: true,
+        yearRange: "2017:2022",
+        monthNames: ["1월", "2월", "3월", "4월", "5월", "6월",
+            "7월", "8월", "9월", "10월", "11월", "12월"],
+        onSelect: function (selectedDate) {
+            var option = this.id == "sdatepicker" ? "minDate" : "maxDate",
+                instance = $(this).data("datepicker"),
+                date = $.datepicker.parseDate(
+                    instance.settings.dateFormat ||
+                    $.datepicker._defaults.dateFormat,
+                    selectedDate, instance.settings);
+            dates.not(this).datepicker("option", option, date);
+        }
+    });
+
     /*todo_delete 변경 ajax*/
 
     var todo_delete = function (id) {
