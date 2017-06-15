@@ -53,7 +53,7 @@ public class ProjectController { /* Rest 컨트롤러 */
 
     }
 
-    @PutMapping(value = "/{seq}/completed", consumes = "application/json") /* 할일 완료 여부 */
+    @PutMapping(value = "/{seq}/completed", consumes = "application/json") /* 완료 여부 */
     ResponseEntity<?> completed(@PathVariable Integer seq, @RequestBody Project project) throws Exception {
         project.setSeq(seq);
         AjaxResult ajaxResult = new AjaxResult();
@@ -67,7 +67,7 @@ public class ProjectController { /* Rest 컨트롤러 */
         return new ResponseEntity<AjaxResult>(ajaxResult, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{seq}", consumes = "application/json") /* 할일 완료 여부 */
+    @PutMapping(value = "/{seq}", consumes = "application/json") /* 수정 */
     ResponseEntity<?> update(@PathVariable Integer seq, @RequestBody Project project) {
         project.setSeq(seq);
         AjaxResult ajaxResult = new AjaxResult();
@@ -81,7 +81,7 @@ public class ProjectController { /* Rest 컨트롤러 */
         return new ResponseEntity<AjaxResult>(ajaxResult, HttpStatus.OK);
     }
 
-    @PutMapping("/{seq}/detete") /* 할일 삭제 */
+    @PutMapping("/{seq}/detete") /* 삭제 */
     ResponseEntity<?> delete(@PathVariable Integer seq) {
         AjaxResult ajaxResult = new AjaxResult();
 

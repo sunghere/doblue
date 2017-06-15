@@ -1,59 +1,33 @@
 (function ($) {
-    'use strict';
-    var selector = "";
-    /* 필터 기억용 변수*/
-    // Your starting point. Enjoy the ride!
-    /*리스트 불러오기 + 할일갯수 ㅊ초기화*/
-    var todo_list_load = function () {
+    /*리스트 불러오기 + 초기화*/
+    var project_list_load = function () {
         var str = "";
         $.ajax({
-            url: "/api/todos",
+            url: "/project",
             method: "get",
             success: function (data) {
-                var notCom_count = 0;
+                var str = '';
                 $.each(data, function (index, val) {
-                    /* 선택자에 의해서 필터링해주는부분*/
-                    if (selector == "active" && val.completed == 1) {
-
-                        return true;
-                    } else if (selector == "completed" && val.completed == 0) {
-                        return true;
-
-                    }
-                    /*필터링 End*/
-                    if (val.completed == 1) {
-                        str += '<li class="completed">'
-
-                    } else {
-                        str += '<li>'
-                    }
-                    str += '<div class="view">'
-                        + '<input class="toggle" type="checkbox" datasrc="' + val.id + '" ';
-                    if (val.completed == 1) {
-                        str += ' checked="">'
-                    } else {
-                        str += '>'
-                        notCom_count++;
-                    }
-                    str += '<label>' + val.todo + '</label>'
-                        + '<button class="destroy" datasrc="' + val.id + '"></button>'
-                        + '</div>'
-                        + '<input class="edit" value="Create a TodoMVC template">'
-                        + '</li>';
+                    str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
+             	   		   '<div class="project-image"></div>'+
+             	   		   '<div class="project-content">'+
+             	   		   '<div class="project-title">'+ val.title +'</div>'+
+             	   		   '<div class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</div>'+
+                    	   '</div></div>';
                 })
-                if (selector == "" || selector == null) {
-                    $('.todo-count strong').html(notCom_count);
-                }
-                $('.todo-list').html(str);
+                $(".isotope-container").html(str);
             }, fail: function () {
                 alert("실패")
-
             }
 
         })
     }
-    /*todos_create ajax*/
 
+    /*초기 세팅*/
+    project_list_load();
+    
+    /* 프로젝트 쓰기 */
+    /*쓰기 버튼 클릭*/
     var todo_create = function () {
         var todo_content = $('.new-todo').val();
         if (todo_content.length < 1 || todo_content == "") {
@@ -133,10 +107,6 @@
     var filter_css_reset = function () {
         $('a').removeClass("selected");
     }
-
-    /*초기 세팅*/
-    todo_list_load("");
-
 
     /* Event */
     $(".new-todo").keypress(function (event) {
