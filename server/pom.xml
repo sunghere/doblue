@@ -62,14 +62,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <scope>test</scope>
+            <version>4.3.7.RELEASE</version>
         </dependency>
-    
-       
+
 
     </dependencies>
     <build>
