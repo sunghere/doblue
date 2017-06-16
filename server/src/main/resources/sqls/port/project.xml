@@ -12,7 +12,7 @@
     </insert>
     <select id="listAll" parameterType="ga.doblue.project.model.Project"
             resultType="ga.doblue.project.model.Project">
-      SELECT url, img, title, content, sdate, edate, completed, del FROM PROJECT ORDER BY SEQ
+      SELECT seq, url, img, title, content, sdate, edate, completed, del, category FROM PROJECT ORDER BY SEQ
 
 
     </select>

@@ -9,8 +9,7 @@
                 var str = '';
                 $.each(data, function (index, val) {
                     str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
-             	   		   '<div class="project-image"><img src="'+val.img+'"></div>'+
-             	   		   '<div class="project-content">'+
+             	   		   '<div class="project-image" id="list-img'+val.seq+'"></div>'+
              	   		   '<div class="project-title">'+ val.title +'</div>'+
              	   		   '<div class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</div>'+
                     	   '</div></div>';
@@ -34,7 +33,7 @@
         var edate = $('#edatepicker').val();
         var title = $('#w_title').val();
         var content = CKEDITOR.instances.write_content.setData('');
-        var img = image_parse(content);
+        var img = imageParse(content);
         var url = $('#w_url').val();
         if (sdate == null || sdate == '' || edate == null || edate == '') {
         	$('#dateInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
@@ -85,7 +84,7 @@
     });
     
     /*메인에 뜰 이미지 파싱*/
-    image_parse = function(content) {
+    imageParse = function(content) {
     	var contentArray = [];
         contentArray = content.split('alt="" src="');
         if (contentArray[1] != null && contentArray[1] != "") {
@@ -96,6 +95,22 @@
         }
         return "";
     }
+    
+    /*메인 이미지 로드*/
+    imagePut = function (src_list, data) {
+        $.each(data, function (index, val) {
+
+            var src = src_list[index];
+            $('#list-img' + val.seq).css({
+                "background-image": 'url("' + src + '")',
+                "-webkit-background-size": "cover",
+                "-moz-background-size": "cover",
+                "-o-background-size": "cover",
+                "background-size": "cover",
+                "background-position": "center"
+            });
+        })
+    };
     
     /*카테고리 선택부분*/
     $('.categorySel').change(function () {

@@ -16,9 +16,11 @@ public class Project implements Serializable {
     private String sdate="";
     private String edate="";
     private int completed;
+    private int del = 0;
+    private String category;
 
-    public Project(int seq, String url, String img, String title, String content, String sdate, String edate,
-				   int completed) {
+	public Project(int seq, String url, String img, String title, String content, String sdate, String edate,
+			int completed, int del, String category) {
 		super();
 		this.seq = seq;
 		this.url = url;
@@ -28,12 +30,15 @@ public class Project implements Serializable {
 		this.sdate = sdate;
 		this.edate = edate;
 		this.completed = completed;
+		this.del = del;
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
-		return "Port [seq=" + seq + ", url=" + url + ", img=" + img + ", title=" + title + ", content=" + content
-				+ ", sdate=" + sdate + ", edate=" + edate + ", completed=" + completed + "]";
+		return "Project [seq=" + seq + ", url=" + url + ", img=" + img + ", title=" + title + ", content=" + content
+				+ ", sdate=" + sdate + ", edate=" + edate + ", completed=" + completed + ", del=" + del + ", category="
+				+ category + "]";
 	}
 
 	public int getSeq() {
@@ -98,6 +103,22 @@ public class Project implements Serializable {
 
 	public void setCompleted(int completed) {
 		this.completed = completed;
+	}
+
+	public int getDel() {
+		return del;
+	}
+
+	public void setDel(int del) {
+		this.del = del;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public Project() {
