@@ -183,6 +183,14 @@ p{
 }
 
 /* Main Portfolio */
+.project-list {
+	width: 80%;
+	margin: 0 auto;
+}
 .project-image {
-	
+	height:230px;
+	overflow: hidden;
+}
+.project-image img {
+	width: 100%;
 }

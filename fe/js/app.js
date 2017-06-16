@@ -9,7 +9,7 @@
                 var str = '';
                 $.each(data, function (index, val) {
                     str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
-             	   		   '<div class="project-image" id="list-img'+val.seq+'"></div>'+
+             	   		   '<div class="project-image" id="list-img'+val.seq+'" style="background:url('+val.img+') no-repeat 100% center"></div>'+
              	   		   '<div class="project-title">'+ val.title +'</div>'+
              	   		   '<div class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</div>'+
                     	   '</div></div>';
