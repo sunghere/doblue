@@ -13,14 +13,14 @@
              	   		   '<div class="project-title">'+ val.title +'</div>'+
              	   		   '<div class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</div>'+
                     	   '</div></div>';
-                })
+                });
                 $(".isotope-container").html(str);
             }, fail: function () {
                 alert("실패")
             }
 
         })
-    }
+    };
 
     /*초기 세팅*/
     project_list_load();
@@ -47,7 +47,7 @@
             $('#contentInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
             check = false;
         }
-        var object = new Object();
+        var object = {};
         object.category = category;
         object.sdate = sdate;
         object.edate = edate;
@@ -94,136 +94,8 @@
 
         }
         return "";
-    }
-    
-    /*메인 이미지 로드*/
-    imagePut = function (src_list, data) {
-        $.each(data, function (index, val) {
-
-            var src = src_list[index];
-            $('#list-img' + val.seq).css({
-                "background-image": 'url("' + src + '")',
-                "-webkit-background-size": "cover",
-                "-moz-background-size": "cover",
-                "-o-background-size": "cover",
-                "background-size": "cover",
-                "background-position": "center"
-            });
-        })
     };
     
-    /*카테고리 선택부분*/
-    $('.categorySel').change(function () {
-        $('#w_category').attr('value', $('.categorySel option:selected').text());
-    });
-    
-    var dates = $("#sdatepicker, #edatepicker ").datepicker({
-        dateFormat: "yy-mm-dd",
-        yearSuffix: '년',
-        showOtherMonths: true,
-        yearRange: "2017:2022",
-        monthNames: ["1월", "2월", "3월", "4월", "5월", "6월",
-            "7월", "8월", "9월", "10월", "11월", "12월"],
-        onSelect: function (selectedDate) {
-            var option = this.id == "sdatepicker" ? "minDate" : "maxDate",
-                instance = $(this).data("datepicker"),
-                date = $.datepicker.parseDate(
-                    instance.settings.dateFormat ||
-                    $.datepicker._defaults.dateFormat,
-                    selectedDate, instance.settings);
-            dates.not(this).datepicker("option", option, date);
-        }
-    });
-
-    /*todo_delete 변경 ajax*/
-
-    var todo_delete = function (id) {
-
-        $.ajax({
-            url: "/api/todos/" + id,
-            contentType: "application/json",
-            method: "delete",
-            success: function (data) {
-                if (data.result == "SUCS") {
-                    todo_list_load("");
-                } else {
-                    alert("실패")
-
-                }
-            }, fail: function () {
-                alert("실패")
-
-            }
-
-        })
-    }
-    /*completed 변경 ajax*/
-    var todo_complete = function (id, completed) {
-        var object = new Object();
-        object.completed = completed;
-        $.ajax({
-            url: "/api/todos/" + id,
-            contentType: "application/json",
-            data: JSON.stringify(object),
-            method: "put",
-            success: function (data) {
-
-                if (data.result == "SUCS") {
-                    todo_list_load("");
-                } else {
-                    alert("실패")
-
-                }
-
-            }
-
-        })
-    }
-    /*filter css*/
-    var filter_css_reset = function () {
-        $('a').removeClass("selected");
-    }
-
-    /* Event */
-    $(".new-todo").keypress(function (event) {
-        if (event.which == '13') {
-            event.preventDefault();
-            todo_create();
-        }
-    });
-    /* 체크박스 누를떄 */
-    $('.todo-list').on("change", ".toggle", function () {
-        var todo_id = $(this).attr("datasrc");
-        var chkbox_isSel = $(this).prop("checked");
-        if (chkbox_isSel) {/* 체크할경우*/
-            todo_complete(todo_id, 1);
-        } else { /* 체크 풀경우 */
-            todo_complete(todo_id, 0);
-        }
-    })
-    /* destory 누를때*/
-    $('.todo-list').on("click", ".destroy", function () {
-        var todo_id = $(this).attr("datasrc");
-
-
-        todo_delete(todo_id);
-    });
-
-    /*filter*/
-    $('.filters').on('click', 'a', function () {
-        event.preventDefault();
-
-        selector = $(this).attr('href').split('/')[1];
-        if (selector != null) {
-            filter_css_reset();
-            $(this).addClass('selected');
-            todo_list_load();
-        } else {
-            /* null일경우 default값 */
-            selector = ""
-        }
-
-    })
     $('.clear-completed').click(function () {
         if ($('.filters li a.selected').attr('href').split('/')[1] == 'active') {
             /*만약 선택되있던 filter 가 active라면, 디폴트로 돌린다*/
@@ -233,7 +105,191 @@
         setTimeout("$('li.completed').find('.destroy').click()", 500);
 
 
-    })
+    });
+
+    $(document).ready(function(e) {
+        $('.with-hover-text, .regular-link').click(function(e){
+            e.stopPropagation();
+        });
+
+        /***************
+         * = Hover text *
+         * Hover text for the last slide
+         ***************/
+        $('.with-hover-text').hover(
+            function(e) {
+                $(this).css('overflow', 'visible');
+                $(this).find('.hover-text')
+                    .show()
+                    .css('opacity', 0)
+                    .delay(200)
+                    .animate(
+                        {
+                            paddingTop: '25px',
+                            opacity: 1
+                        },
+                        'fast',
+                        'linear'
+                    );
+            },
+            function(e) {
+                var obj = $(this);
+                $(this).find('.hover-text')
+                    .animate(
+                        {
+                            paddingTop: '0',
+                            opacity: 0
+                        },
+                        'fast',
+                        'linear',
+                        function() {
+                            $(this).hide();
+                            $( obj ).css('overflow', 'hidden');
+                        }
+                    );
+            }
+        );
+
+        var img_loaded = 0;
+        var j_images = [];
+
+        /*************************
+         * = Controls active menu *
+         * Hover text for the last slide
+         *************************/
+        $(function() {
+            var pause = 10;
+            $(document).scroll(function(e) {
+                delay(function() {
+
+                        var tops = [];
+
+                        $('.story').each(function(index, element) {
+                            tops.push( $(element).offset().top - 200 );
+                        });
+
+                        var scroll_top = $(this).scrollTop();
+
+                        var lis = $('.nav > li');
+
+                        for ( var i=tops.length-1; i>=0; i-- ) {
+                            if ( scroll_top >= tops[i] ) {
+                                menu_focus( lis[i], i+1 );
+                                break;
+                            }
+                        }
+                    },
+                    pause);
+            });
+            $(document).scroll();
+        });
+    });
+
+    var delay = (function(){
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
+
+    menu_focus = function( element, i ) {
+        if ( $(element).hasClass('active') ) {
+            if ( i == 6 ) {
+                if ( $('.navbar').hasClass('inv') == false )
+                    return;
+            } else {
+                return;
+            }
+        }
+
+        if ( i == 1 || i == 6 )
+            $('.navbar').removeClass('inv');
+        else
+            $('.navbar').addClass('inv');
+
+        $('.nav > li').removeClass('active');
+        $(element).addClass('active');
+
+        var icon = $(element).find('.icon');
+
+        var left_pos = icon.offset().left - $('.nav').offset().left;
+        var el_width = icon.width() + $(element).find('.text').width() + 10;
+
+        $('.active-menu').stop(false, false).animate(
+            {
+                left: left_pos,
+                width: el_width
+            },
+            1500,
+            'easeInOutQuart'
+        );
+    };
+
+    /*************
+     * = Parallax *
+     *************/
+    jQuery(document).ready(function ($) {
+        //Cache some variables
+        var links = $('.nav').find('li');
+        slide = $('.slide');
+        button = $('.button');
+        mywindow = $(window);
+        htmlbody = $('html,body');
+
+        //Create a function that will be passed a slide number and then will scroll to that slide using jquerys animate. The Jquery
+        //easing plugin is also used, so we passed in the easing method of 'easeInOutQuint' which is available throught the plugin.
+        function goToByScroll(dataslide) {
+            var offset_top = ( dataslide == 1 ) ? '0px' : $('.slide[data-slide="' + dataslide + '"]').offset().top;
+
+            htmlbody.stop(false, false).animate({
+                scrollTop: offset_top
+            }, 1500, 'easeInOutQuart');
+        }
+
+        //When the user clicks on the navigation links, get the data-slide attribute value of the link and pass that variable to the goToByScroll function
+        links.click(function (e) {
+            e.preventDefault();
+            dataslide = $(this).attr('data-slide');
+            goToByScroll(dataslide);
+            $(".nav-collapse").collapse('hide');
+        });
+
+        //When the user clicks on the navigation links, get the data-slide attribute value of the link and pass that variable to the goToByScroll function
+        $('.navigation-slide').click(function (e) {
+            e.preventDefault();
+            dataslide = $(this).attr('data-slide');
+            goToByScroll(dataslide);
+            $(".nav-collapse").collapse('hide');
+        });
+    });
+
+    /***************
+     * = Menu hover *
+     ***************/
+    jQuery(document).ready(function ($) {
+        //Cache some variables
+        var menu_item = $('.nav').find('li');
+
+        menu_item.hover(
+            function(e) {
+                var icon = $(this).find('.icon');
+
+                var left_pos = icon.offset().left - $('.nav').offset().left;
+                var el_width = icon.width() + $(this).find('.text').width() + 10;
+
+                var hover_bar = $('<div class="active-menu special-active-menu"></div>')
+                    .css('left', left_pos)
+                    .css('width', el_width)
+                    .attr('id', 'special-active-menu-' + $(this).data('slide') );
+
+                $('.active-menu').after( hover_bar );
+            },
+            function(e) {
+                $('.special-active-menu').remove();
+            }
+        );
+    });
 
 })
-(jQuery)
+(jQuery);

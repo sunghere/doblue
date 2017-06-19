@@ -9,32 +9,62 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
     <link rel="stylesheet" href="css/app.css">
-    
+
 </head>
 <body>
+<header class="header">
+	<div class="navbar navbar-fixed-top" data-activeslide="1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-8">
+					<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+
+					<div class="nav-collapse collapse navbar-responsive-collapse">
+						<ul class="nav row">
+							<li data-menuanchor="firstPage" data-slide="1" class="col-12 col-sm-3"><a id="menu-link-1" href="#firstPage"><i class="icon fa fa-home" aria-hidden="true"></i> <span class="text">HOME</span></a></li>
+							<li data-menuanchor="secondPage" data-slide="2" class="col-12 col-sm-3"><a id="menu-link-2" href="#secondPage"><i class="icon fa fa-user"></i> <span class="text">ABOUT US</span></a></li>
+							<li data-slide="3" class="col-12 col-sm-3"><a id="menu-link-3" href="#section3"><i class="icon fa fa-briefcase"></i> <span class="text">PORTFOLIO</span></a></li>
+							<li data-slide="4" class="col-12 col-sm-3"><a id="menu-link-6" href="#section4"><i class="icon fa fa-envelope"></i> <span class="text">CONTACT</span></a></li>
+						</ul>
+						<div class="row">
+							<div class="col-sm-2 active-menu"></div>
+						</div>
+					</div><!-- /.nav-collapse -->
+				</div>
+			</div>
+		</div><!-- /.container -->
+	</div><!-- /.navbar -->
+</header>
 <div id="fullpage">
-	<div class="section " id="section0">
+	<div class="section slide story" id="section1" data-slide="1">
 		<div class="intro">
 			<h1>doBlue</h1>
 			<p>Hello, We are doBlue. <br>
 			Web Develop and Design</p>
 		</div>
 	</div>
-	<div class="section " id="section1">
+	<div class="section slide story" id="section2" data-slide="2">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="whois col-md-6 col-sm-12">
 					<div class="introduce">
 						<div class="pic center-block"></div>
-						<h2>YOON</h2>
+						<h3>YOON</h3>
+						<p>Hello</p>
 					</div>
 				</div>
 				<div class="whois col-md-6 col-sm-12">
 					<div class="introduce">
 						<div class="pic center-block"></div>
-						<h2>YOON</h2>
+						<h3>YOON</h3>
 					</div>
 				</div>
 			</div>
@@ -52,7 +82,7 @@
 <!-- 		</div> -->
 
 <!-- 	</div> -->
-	<div class="section" id="section3">
+	<div class="section" id="section3"  data-slide="3">
 		<div id="project-write"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
 		<div class="intro">
 			<h1>Portfolio</h1>
@@ -199,6 +229,9 @@ $(document).ready(function() {
 		navigationTooltips: ['First page', 'Second page', 'Third and last page'],
 		responsiveWidth: 1100
 	});
+
+    var lis = $('.nav > li');
+    menu_focus( lis[0], 1 );
 	
 	$("#project-write").click(function() {
 		$("#write-modal-btn").click();
