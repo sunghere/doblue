@@ -203,11 +203,6 @@
             }
         }
 
-        if ( i == 1 || i == 6 )
-            $('.navbar').removeClass('inv');
-        else
-            $('.navbar').addClass('inv');
-
         $('.nav > li').removeClass('active');
         $(element).addClass('active');
 
