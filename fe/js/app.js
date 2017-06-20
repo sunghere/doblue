@@ -99,6 +99,29 @@
         }
         return "";
     };
+
+    /*카테고리 선택부분*/
+    $('.categorySel').change(function () {
+        $('#w_category').attr('value', $('.categorySel option:selected').text());
+    });
+
+    var dates = $("#sdatepicker, #edatepicker ").datepicker({
+        dateFormat: "yy-mm-dd",
+        yearSuffix: '년',
+        showOtherMonths: true,
+        yearRange: "2017:2022",
+        monthNames: ["1월", "2월", "3월", "4월", "5월", "6월",
+            "7월", "8월", "9월", "10월", "11월", "12월"],
+        onSelect: function (selectedDate) {
+            var option = this.id == "sdatepicker" ? "minDate" : "maxDate",
+                instance = $(this).data("datepicker"),
+                date = $.datepicker.parseDate(
+                    instance.settings.dateFormat ||
+                    $.datepicker._defaults.dateFormat,
+                    selectedDate, instance.settings);
+            dates.not(this).datepicker("option", option, date);
+        }
+    });
     
     $('.clear-completed').click(function () {
         if ($('.filters li a.selected').attr('href').split('/')[1] == 'active') {
