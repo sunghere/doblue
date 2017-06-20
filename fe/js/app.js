@@ -9,7 +9,7 @@
                 var str = '';
                 $.each(data, function (index, val) {
                     str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
-             	   		   '<div class="project-image" id="list-img'+val.seq+'" style="background:url('+val.img+') no-repeat 100% center"></div>'+
+             	   		   '<a href="http://'+val.url+'"><div class="project-image" id="list-img'+val.seq+'" style="background:url('+val.img+') no-repeat 100% center"></div></a>'+
              	   		   '<div class="project-title">'+ val.title +'</div>'+
              	   		   '<div class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</div>'+
                     	   '</div></div>';
@@ -68,13 +68,14 @@
                     	$('#edatepicker').val('');
                     	$('#w_title').val('');
                     	CKEDITOR.instances.write_content.setData('');
-                    	$("#detail-modal-btn").click();
+                    	$("#show-message-close").click();
                     } else {
-                        alert("실패")
+                        show_message("실패")
 
                     }
                 }, fail: function () {
-                    alert("실패")
+                    show_message("실패")
+
 
                 }
             });
