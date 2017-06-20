@@ -36,7 +36,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     @Override
     public void insert(Project project) throws Exception {
-        sqlSession.update(ns + "insert", project);
+        sqlSession.insert(ns + "insert", project);
 
     }
 
