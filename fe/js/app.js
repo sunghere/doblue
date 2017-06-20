@@ -56,7 +56,7 @@
         object.img = img;
         object.url = url;
         
-        if (check == true) {
+        if (check === true) {
             $.ajax({
             	url: "project",
                 method: "post",
@@ -68,7 +68,7 @@
                     	$('#edatepicker').val('');
                     	$('#w_title').val('');
                     	CKEDITOR.instances.write_content.setData('');
-                    	$(".write-btn").click();
+                    	$("#detail-modal-btn").click();
                     } else {
                         alert("실패")
 
@@ -77,7 +77,9 @@
                     alert("실패")
 
                 }
-            })
+            });
+            return;
+
         } else {
             show_message("빈칸이 있어요 전부 입력해주세요");
         }
