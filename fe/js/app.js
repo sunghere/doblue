@@ -86,12 +86,16 @@
     /*메인에 뜰 이미지 파싱*/
     imageParse = function(content) {
     	var contentArray = [];
-        contentArray = content.split('alt="" src="');
-        if (contentArray[1] != null && contentArray[1] != "") {
-            var src = contentArray[1].split('"');
-            return src[0];
-        } else {
+    	if(content!=null || content!="") {
+    	    if(content.indexOf("<img")) {
+                contentArray = content.split('alt="" src="');
+                if (contentArray[1] != null && contentArray[1] != "") {
+                    var src = contentArray[1].split('"');
+                    return src[0];
+                } else {
 
+                }
+            }
         }
         return "";
     };

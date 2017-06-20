@@ -124,12 +124,27 @@
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6 send-mail">
-						<div><input type="text" class="form-control" id="name" placeholder="Name" name="name" required></div>
-						<div><input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required></div>
-						<div><textarea class="form-control" rows="8" id="message" placeholder="Message" name="message" required></textarea></div>
+						<form role="form" id="footer-form">
+							<div>
+								<input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
+								<i class="fa fa-user form-control-feedback"></i>
+							</div>
+							<div>
+								<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+								<i class="fa fa-envelope form-control-feedback"></i>
+							</div>
+							<div>
+								<textarea class="form-control" rows="8" id="message" placeholder="Message" name="message" required></textarea>
+								<i class="fa fa-pencil form-control-feedback"></i>
+							</div>
+							<input type="submit" value="Send" class="btn btn-default">
+						</form>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-12">
+			<p class="text-center">Copyright © 2017 doBlue by <a target="_blank" href="#">yoon</a>.</p>
 		</div>
 	</div>
 </div>

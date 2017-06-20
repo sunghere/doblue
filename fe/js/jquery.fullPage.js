@@ -398,7 +398,6 @@
             var lis = $('.menu-nav li');
             var me = $(this).attr("data-src");
             $.each(lis, function (index, element) {
-                var target = $('.menu-nav li[data-src="'+ name + '"]');
 
                 if ($(element).attr("data-src") == me ) {
                     menu_focus(element, index + 1);
@@ -406,7 +405,6 @@
                 }
 
             });
-
             var index = $(this).index();
             scrollPage($(SECTION_SEL).eq(index));
         });
