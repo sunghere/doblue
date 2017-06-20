@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 /**
  * Created by SungHere on 2017-06-19.
@@ -31,7 +32,7 @@ public class CKController {
 
         try {
 
-            String fileName = upload.getOriginalFilename();
+            String fileName = new Date().getTime()+upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
 
 
