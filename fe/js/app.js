@@ -43,7 +43,7 @@
             $('#titleInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
             check = false;
         }
-        if (content.length < 1) {
+        if ( content ==null || content == "" || content.length < 1) {
             $('#contentInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
             check = false;
         }
@@ -79,14 +79,14 @@
                 }
             })
         } else {
-            showMsg("빈칸이 있어요 전부 입력해주세요");
+            show_message("빈칸이 있어요 전부 입력해주세요");
         }
     });
     
     /*메인에 뜰 이미지 파싱*/
     imageParse = function(content) {
     	var contentArray = [];
-    	if(content!=null || content!="") {
+    	if(content!=null && content!="") {
     	    if(content.indexOf("<img")) {
                 contentArray = content.split('alt="" src="');
                 if (contentArray[1] != null && contentArray[1] != "") {
