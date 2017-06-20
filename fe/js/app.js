@@ -195,7 +195,7 @@
 
     menu_focus = function( element, i ) {
         if ( $(element).hasClass('active') ) {
-            if ( i == 6 ) {
+            if ( i == 4 ) {
                 if ( $('.navbar').hasClass('inv') == false )
                     return;
             } else {
@@ -203,12 +203,12 @@
             }
         }
 
-        $('.nav > li').removeClass('active');
+        $('.menu-nav li').removeClass('active');
         $(element).addClass('active');
 
         var icon = $(element).find('.icon');
 
-        var left_pos = icon.offset().left - $('.nav').offset().left;
+        var left_pos = icon.offset().left - $('.menu-nav').offset().left;
         var el_width = icon.width() + $(element).find('.text').width() + 10;
 
         $('.active-menu').stop(false, false).animate(
