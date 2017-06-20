@@ -32,7 +32,7 @@
         var sdate = $('#sdatepicker').val();
         var edate = $('#edatepicker').val();
         var title = $('#w_title').val();
-        var content = CKEDITOR.instances.write_content.setData('');
+        var content = CKEDITOR.instances.write_content.getData();
         var img = imageParse(content);
         var url = $('#w_url').val();
         if (sdate == null || sdate == '' || edate == null || edate == '') {
@@ -67,7 +67,7 @@
                     	$('#sdatepicker').val('');
                     	$('#edatepicker').val('');
                     	$('#w_title').val('');
-                    	CKEDITOR.instances.write_content.getData();
+                    	CKEDITOR.instances.write_content.setData('');
                     	$(".write-btn").click();
                     } else {
                         alert("실패")
