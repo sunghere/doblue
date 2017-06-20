@@ -212,6 +212,7 @@
 
         var icon = $(element).find('.icon');
 
+
         var left_pos = icon.offset().left - $('.menu-nav').offset().left;
         var el_width = icon.width() + $(element).find('.text').width() + 10;
 
