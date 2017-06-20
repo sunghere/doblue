@@ -3,7 +3,7 @@
     var project_list_load = function () {
         var str = "";
         $.ajax({
-            url: "/project",
+            url: "project",
             method: "get",
             success: function (data) {
                 var str = '';
@@ -58,7 +58,7 @@
         
         if (check == true) {
             $.ajax({
-            	url: "/project",
+            	url: "project",
                 method: "post",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(object),
