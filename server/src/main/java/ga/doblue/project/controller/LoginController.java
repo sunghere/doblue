@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by SungHere on 2017-06-14.
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping("login")
 public class LoginController {
 
     @Autowired

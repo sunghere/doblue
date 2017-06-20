@@ -18,7 +18,7 @@ import java.util.Date;
  * Created by SungHere on 2017-06-19.
  */
 @RestController
-@RequestMapping("/imageUpload")
+@RequestMapping("imageUpload")
 public class CKController {
 
 
@@ -44,7 +44,7 @@ public class CKController {
             String callback = request.getParameter("CKEditorFuncNum");
 
             printWriter = response.getWriter();
-            String fileUrl = "/usr/local/upload/" + fileName; // url경로
+            String fileUrl = "/upload/" + fileName; // url경로
 
 
             printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
