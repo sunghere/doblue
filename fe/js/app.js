@@ -269,13 +269,13 @@
      ***************/
     jQuery(document).ready(function ($) {
         //Cache some variables
-        var menu_item = $('.nav').find('li');
+        var menu_item = $('.menu-nav').find('li');
 
         menu_item.hover(
             function(e) {
                 var icon = $(this).find('.icon');
 
-                var left_pos = icon.offset().left - $('.nav').offset().left;
+                var left_pos = icon.offset().left - $('.menu-nav').offset().left;
                 var el_width = icon.width() + $(this).find('.text').width() + 10;
 
                 var hover_bar = $('<div class="active-menu special-active-menu"></div>')
@@ -291,5 +291,10 @@
         );
     });
 
+    var show_message = function (str) {
+        $('#my-message').html(str);
+
+        $('#show-message-btn').click();
+    };
 })
 (jQuery);
