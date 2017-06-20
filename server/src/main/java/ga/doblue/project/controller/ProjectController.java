@@ -40,7 +40,7 @@ public class ProjectController { /* Rest 컨트롤러 */
     @PostMapping/* Insert (프로젝트 추가 ) */
     ResponseEntity<?> create(@RequestBody Project project) throws Exception {
         AjaxResult ajaxResult = new AjaxResult();
-
+        System.out.println(project);
         try {
             service.insert(project);
             ajaxResult.setResult("SUCS");
