@@ -3,10 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ga.doblue</groupId>
-    <artifactId>port-server</artifactId>
+    <artifactId>doblue</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>port-server</name>
+    <packaging>war</packaging>
+
+    <name>doblue</name>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -67,19 +69,31 @@
             <artifactId>spring-test</artifactId>
             <version>4.3.7.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
 
 
     </dependencies>
     <build>
+        <!-- doblue.war 가 생성된다. -->
+        <finalName>doblue</finalName>
+        <resources>
+
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
-                    <mainClass>org.h2.tools.Console</mainClass>
-                    <arguments>
-                        <argument>-browser</argument>
-                    </arguments>
+                    <source>1.8</source><!-- 내가 쓰는 자바 버전 넣기 -->
+                    <target>1.8</target><!-- 내가 쓰는 자바 버전 넣기 -->
                 </configuration>
             </plugin>
             <plugin>
@@ -88,6 +102,17 @@
                 <configuration>
                     <executable>true</executable>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+
+                <configuration>
+                    <warSourceDirectory>${basedir}/../fe</warSourceDirectory>
+
+                </configuration>
+
             </plugin>
         </plugins>
     </build>
