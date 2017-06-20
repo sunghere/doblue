@@ -110,7 +110,6 @@
 
                 <configuration>
                     <warSourceDirectory>${basedir}/../fe</warSourceDirectory>
-
                 </configuration>
 
             </plugin>
