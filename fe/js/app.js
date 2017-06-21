@@ -9,10 +9,12 @@
                 var str = '';
                 $.each(data, function (index, val) {
                     str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
-             	   		   '<a href="http://'+val.url+'"><div class="project-image" id="list-img'+val.seq+'" style="background:url('+val.img+') no-repeat 100% center"></div></a>'+
-             	   		   '<div class="project-title">'+ val.title +'</div>'+
-             	   		   '<div class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</div>'+
-                    	   '</div></div>';
+                           '<a href="#">' +
+                           '<img class="project-image" id="list-img'+val.seq+'" src="'+val.img+'">'+
+                           '<div class="overlay">'+
+             	   		   '<div class="project-title">'+ val.title +'<br>'+
+             	   		   '<span class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</span></div>'+
+                    	   '</div></a></div>';
                 });
                 $(".isotope-container").html(str);
             }, fail: function () {
@@ -79,7 +81,7 @@
 
                 }
             });
-            return;
+
 
         } else {
             show_message("빈칸이 있어요 전부 입력해주세요");
@@ -102,6 +104,12 @@
         }
         return "";
     };
+
+    /*리스트 필터링 버튼 클릭*/
+    $(".isotope-nav li").click(function () {
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+    });
 
     /*카테고리 선택부분*/
     $('.categorySel').change(function () {
@@ -194,7 +202,7 @@
 
                         var tops = [];
 
-                        $('.story').each(function(index, element) {
+                        $('.section').each(function(index, element) {
                             tops.push( $(element).offset().top - 200 );
                         });
 

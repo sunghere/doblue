@@ -83,6 +83,10 @@ h3 {
     font-size: 2em;
 }
 
+.logo {
+    font-size: 50px;
+}
+
 .intro p {
     width: 50%;
     margin: 0 auto;
@@ -200,6 +204,9 @@ h3 {
 }
 
 /* nav */
+.top-nav {
+    margin-top: 10px;
+}
 .navbar {
     background-color: #e4e6e5;
     background-color: rgba(228, 230, 229, .85);
@@ -353,10 +360,20 @@ h3 {
     }
 }
 
+.font-blue {
+    color: steelblue;
+}
+
 /* Main FirstPage */
 #section1 {
-    background: url("../img/background2.jpg") no-repeat center;
+    background: url("../img/background.jpg") no-repeat center;
     background-size: cover;
+}
+
+.background-box {
+    background-color: rgba(255,255,255,0.7);
+    padding: 45px 25px;
+    margin: 0 auto;
 }
 
 /* Main introduce */
@@ -372,9 +389,6 @@ h3 {
     border-radius: 250px;
 }
 
-/*.nav li {
-	display: inline-block;
-}*/
 .modal-dialog, .modal-content {
     height: 90%;
 }
@@ -384,16 +398,76 @@ h3 {
 }
 
 /* Main Portfolio */
-.project-list {
-    width: 80%;
+.isotope-nav {
+    width: 90%;
     margin: 0 auto;
 }
 
+.isotope-nav li {
+    display: inline-block;
+    padding: 5px 20px;
+    border: solid 1px #eeeeee;
+    margin-bottom: 2px;
+}
+
+.isotope-nav li.active, .isotope-nav li:hover {
+    background: #FFFFFF;
+    color: midnightblue;
+}
+
+.project-list {
+    width: 85%;
+    margin: 1% auto;
+}
+
 .project-image {
+    width: 100%;
     height: 230px;
     overflow: hidden;
 }
-
-.project-image img {
+.overlay {
+    position: absolute;
+    top: -106px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 230px;
     width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(85, 172, 238, 0.9);
+}
+
+.isotope-item {
+
+}
+
+.isotope-item:hover .overlay {
+    opacity: 1;
+}
+
+.project-title {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.project-duration {
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .isotope-nav li {
+        display: block;
+    }
+}
+
+/*Main contact*/
+.contact {
+    width:80%;
+    margin: 2% auto;
 }

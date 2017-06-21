@@ -19,8 +19,12 @@
     <div class="navbar navbar-fixed-top" data-activeslide="1">
         <div class="container">
             <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-8">
+                <div class="col-md-4">
+                    <div class="logo">
+                        do<span class="font-blue">Blue</span>
+                    </div>
+                </div>
+                <div class="col-md-8 top-nav">
                     <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                             data-target=".navbar-responsive-collapse">
@@ -54,15 +58,16 @@
         </div><!-- /.container -->
     </div><!-- /.navbar -->
 </header>
+
 <div id="fullpage">
-    <div class="section slide story" id="section1" data-slide="1">
-        <div class="intro">
-            <h1>doBlue</h1>
+    <div class="section slide" id="section1" data-slide="1">
+        <div class="intro background-box">
+            <h1>do<span class="font-blue">Blue</span></h1>
             <p>Hello, We are doBlue. <br>
                 Web Develop and Design</p>
         </div>
     </div>
-    <div class="section slide story" id="section2" data-slide="2">
+    <div class="section slide" id="section2" data-slide="2">
         <div class="container-fluid">
             <div class="row">
                 <div class="whois col-md-6 col-sm-12">
@@ -93,22 +98,21 @@
     <!-- 		</div> -->
 
     <!-- 	</div> -->
-    <div class="section slide story" id="section3" data-slide="3">
+    <div class="section slide" id="section3" data-slide="3">
         <div id="project-write"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
         <div class="intro">
             <h1>Portfolio</h1>
-            <p>our project</p>
             <div class="container-fluid">
                 <div class="row">
                     <div id="portfolio col-md-12">
 
                         <!-- isotope filters start -->
                         <div class="filters text-align">
-                            <ul class="nav">
-                                <li class="active"><a href="#" data-filter="*">All</a></li>
-                                <li><a href="#" data-filter=".web-programming">Web Programming</a></li>
-                                <li><a href="#" data-filter=".web-design">Web design</a></li>
-                                <li><a href="#" data-filter=".editorial-design">Editorial design</a></li>
+                            <ul class="isotope-nav">
+                                <li class="active" data-filter="*">All</a></li>
+                                <li data-filter=".web-programming">Web Programming</a></li>
+                                <li data-filter=".web-design">Web design</a></li>
+                                <li data-filter=".editorial-design">Editorial design</a></li>
                             </ul>
                         </div>
                         <!-- isotope filters end -->
@@ -120,11 +124,11 @@
             </div>
         </div>
     </div>
-    <div class="section slide story" id="section4" data-slide="4">
+    <div class="section slide" id="section4" data-slide="4">
         <div class="intro">
             <h1>Contact us</h1>
             <div class="container-fluid">
-                <div class="row">
+                <div class="row contact">
                     <div class="col-md-6 col-sm-6 contact-info">
                         <div>
                             <ul>
@@ -181,11 +185,11 @@
                         <td>Category</td>
                         <td>
                             <select class="selectpicker show-tick categorySel">
-                                <option>웹디자인</option>
-                                <option>프로그래밍</option>
+                                <option>web-design</option>
+                                <option>web-programming</option>
                                 <option>내꺼</option>
                             </select>
-                            <input type="hidden" name="category" id="w_category" value="웹디자인">
+                            <input type="hidden" name="category" id="w_category" value="web-design">
                         </td>
                     </tr>
                     <tr id="dateInput">
@@ -265,6 +269,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script src="js/jquery.fullPage.js"></script>
 <script src="js/app.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
@@ -272,7 +277,7 @@
     $(document).ready(function () {
         $('#fullpage').fullpage({
             anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
-            sectionsColor: ['whitesmoke', '#1BBC9B', '#7E8F7C', '#4e8e4d'],
+            sectionsColor: ['#FFFFFF', '#7E8F7C', '#d2deea', '#4e8e4d'],
             menu: '#menu',
             navigation: true,
             navigationPosition: 'right',
@@ -282,6 +287,12 @@
 
         var lis = $('.nav > li');
         menu_focus(lis[0], 1);
+
+        /*포트폴리오 필터링*/
+        $('.isotope-nav').on( 'click', 'li', function() {
+            var filterValue = $(this).attr('data-filter');
+            $(".isotope-container").isotope({ filter: filterValue });
+        });
 
         $("#project-write").click(function () {
             $("#write-modal-btn").click();
