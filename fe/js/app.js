@@ -81,7 +81,7 @@
 
                 }
             });
-
+            return;
 
         } else {
             show_message("빈칸이 있어요 전부 입력해주세요");
@@ -202,7 +202,7 @@
 
                         var tops = [];
 
-                        $('.section').each(function(index, element) {
+                        $('.story').each(function(index, element) {
                             tops.push( $(element).offset().top - 200 );
                         });
 
