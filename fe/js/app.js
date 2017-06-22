@@ -8,6 +8,7 @@
             success: function (data) {
                 var str = '';
                 $.each(data, function (index, val) {
+                    if(index < 10) {
                     str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
                            '<a href="#">' +
                            '<img class="project-image" id="list-img'+val.seq+'" src="'+val.img+'">'+
@@ -15,8 +16,10 @@
              	   		   '<div class="project-title">'+ val.title +'<br>'+
              	   		   '<span class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</span></div>'+
                     	   '</div></a></div>';
+                    }
                 });
                 $(".isotope-container").html(str);
+
             }, fail: function () {
                 alert("실패")
             }
@@ -81,7 +84,7 @@
 
                 }
             });
-            return;
+
 
         } else {
             show_message("빈칸이 있어요 전부 입력해주세요");
