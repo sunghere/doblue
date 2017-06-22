@@ -13,8 +13,6 @@
     <select id="listAll" parameterType="ga.doblue.project.model.Project"
             resultType="ga.doblue.project.model.Project">
       SELECT url, img, title, content, sdate, edate, completed, del,category FROM PROJECT ORDER BY SEQ
-
-
     </select>
     <select id="detail" parameterType="ga.doblue.project.model.Project"
             resultType="ga.doblue.project.model.Project">
