@@ -18,43 +18,35 @@
 <header class="header">
     <div class="navbar navbar-fixed-top" data-activeslide="1">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="logo">
-                        do<span class="font-blue">Blue</span>
-                    </div>
-                </div>
-                <div class="col-md-8 top-nav">
-                    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target=".navbar-responsive-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+            <div class="navbar-brand logo">do<span class="font-blue">Blue</span></div>
+            <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                    <div class="nav-collapse collapse navbar-responsive-collapse">
-                        <ul class="nav row menu-nav">
-                            <li data-slide="1" data-src="firstPage" class="col-12 col-sm-3"><a id="menu-link-1"
-                                                                                               href="#section1"><i
-                                    class="icon fa fa-home" aria-hidden="true"></i> <span class="text">HOME</span></a>
-                            </li>
-                            <li data-slide="2" data-src="secondPage" class="col-12 col-sm-3"><a id="menu-link-2"
-                                                                                                href="#section2"><i
-                                    class="icon fa fa-user"></i> <span class="text">ABOUT US</span></a></li>
-                            <li data-slide="3" data-src="3rdPage" class="col-12 col-sm-3"><a id="menu-link-3"
-                                                                                             href="#section3"><i
-                                    class="icon fa fa-briefcase"></i> <span class="text">PORTFOLIO</span></a></li>
-                            <li data-slide="4" data-src="4thPage" class="col-12 col-sm-3"><a id="menu-link-4"
-                                                                                             href="#section4"><i
-                                    class="icon fa fa-envelope"></i> <span class="text">CONTACT</span></a></li>
-                        </ul>
-                        <div class="row">
-                            <div class="col-sm-2 active-menu"></div>
-                        </div>
-                    </div><!-- /.nav-collapse -->
+            <div class="nav-collapse collapse navbar-responsive-collapse">
+                <ul class="nav row menu-nav">
+                    <li data-slide="1" data-src="firstPage" class="col-12 col-sm-3"><a id="menu-link-1"
+                                                                                       href="#section1"><i
+                            class="icon fa fa-home" aria-hidden="true"></i> <span class="text">HOME</span></a>
+                    </li>
+                    <li data-slide="2" data-src="secondPage" class="col-12 col-sm-3"><a id="menu-link-2"
+                                                                                        href="#section2"><i
+                            class="icon fa fa-user"></i> <span class="text">ABOUT US</span></a></li>
+                    <li data-slide="3" data-src="3rdPage" class="col-12 col-sm-3"><a id="menu-link-3"
+                                                                                     href="#section3"><i
+                            class="icon fa fa-briefcase"></i> <span class="text">PORTFOLIO</span></a></li>
+                    <li data-slide="4" data-src="4thPage" class="col-12 col-sm-3"><a id="menu-link-4"
+                                                                                     href="#section4"><i
+                            class="icon fa fa-envelope"></i> <span class="text">CONTACT</span></a></li>
+                </ul>
+                <div class="row">
+                    <div class="col-sm-2 active-menu"></div>
                 </div>
-            </div>
+            </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
     </div><!-- /.navbar -->
 </header>
@@ -100,27 +92,22 @@
     <!-- 	</div> -->
     <div class="section slide" id="section3" data-slide="3">
         <div id="project-write"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-        <div class="intro">
-            <h1>Portfolio</h1>
+        <div class="portfolio">
             <div class="container-fluid">
-                <div class="row">
-                    <div id="portfolio col-md-12">
 
-                        <!-- isotope filters start -->
-                        <div class="filters text-align">
-                            <ul class="isotope-nav">
-                                <li class="active" data-filter="*">All</a></li>
-                                <li data-filter=".web-programming">Web Programming</a></li>
-                                <li data-filter=".web-design">Web design</a></li>
-                                <li data-filter=".editorial-design">Editorial design</a></li>
-                            </ul>
-                        </div>
-                        <!-- isotope filters end -->
-
-                        <div class="isotope-container row project-list"></div>
-
-                    </div>
+                <!-- isotope filters start -->
+                <div class="filters text-align">
+                    <ul class="isotope-nav">
+                        <li class="active" data-filter="*">All</a></li>
+                        <li data-filter=".web-programming">Web Programming</a></li>
+                        <li data-filter=".web-design">Web design</a></li>
+                        <li data-filter=".editorial-design">Editorial design</a></li>
+                    </ul>
                 </div>
+                <!-- isotope filters end -->
+
+                <div class="isotope-container row project-list"></div>
+
             </div>
         </div>
     </div>
@@ -169,7 +156,7 @@
 
 <input type="hidden" data-target='#writeModal' data-toggle='modal' id="write-modal-btn">
 <!-- 프로젝트 업로드 모달 -->
-<div id="writeModal" class="modal fade" role="dialog" >
+<div id="writeModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -246,7 +233,7 @@
      type="button" hidden="hidden">
 </div>
 <%--메시지를 띄우는용도의 창 show-message사용--%>
-<div id="message-modal" class="modal fade" role="dialog" >
+<div id="message-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-sm">
 
 
@@ -289,9 +276,9 @@
         menu_focus(lis[0], 1);
 
         /*포트폴리오 필터링*/
-        $('.isotope-nav').on( 'click', 'li', function() {
+        $('.isotope-nav').on('click', 'li', function () {
             var filterValue = $(this).attr('data-filter');
-            $(".isotope-container").isotope({ filter: filterValue });
+            $(".isotope-container").isotope({filter: filterValue});
         });
 
         $("#project-write").click(function () {

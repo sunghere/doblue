@@ -83,10 +83,6 @@ h3 {
     font-size: 2em;
 }
 
-.logo {
-    font-size: 50px;
-}
-
 .intro p {
     width: 50%;
     margin: 0 auto;
@@ -204,9 +200,10 @@ h3 {
 }
 
 /* nav */
-.top-nav {
-    margin-top: 10px;
+.logo {
+    font-size: 50px;
 }
+
 .navbar {
     background-color: #e4e6e5;
     background-color: rgba(228, 230, 229, .85);
@@ -218,6 +215,10 @@ h3 {
 .navbar.inv {
     background-color: rgba(0, 0, 0, .5);
     border-bottom: 1px solid #bfbfbf;
+}
+
+.navbar>.container {
+    margin-top: 10px;
 }
 
 .navbar .nav a {
@@ -234,6 +235,8 @@ h3 {
 .navbar-responsive-collapse {
     margin: 0 auto;
     width: 80%;
+    float: right;
+    padding: 0 15px;
 }
 
 .nav li {
@@ -398,6 +401,12 @@ h3 {
 }
 
 /* Main Portfolio */
+#section3 .fp-tableCell {
+    vertical-align: initial;
+}
+.portfolio {
+    margin-top: 8%;
+}
 .isotope-nav {
     width: 90%;
     margin: 0 auto;
