@@ -2379,6 +2379,7 @@
             this.items = isotope.filteredItems;
             this.size = isotope.size;
         }
+
     }
 
     var proto = LayoutMode.prototype;

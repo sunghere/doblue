@@ -8,17 +8,17 @@
             success: function (data) {
                 var str = '';
                 $.each(data, function (index, val) {
-                    if(index < 10) {
-                    str += '<div class="isotope-item col-md-4 col-sm-6 '+ val.category +'">'+
-                           '<a href="#">' +
-                           '<img class="project-image" id="list-img'+val.seq+'" src="'+val.img+'">'+
-                           '<div class="overlay">'+
-             	   		   '<div class="project-title">'+ val.title +'<br>'+
-             	   		   '<span class="project-duration">'+ val.sdate +' ~ '+ val.edate +'</span></div>'+
-                    	   '</div></a></div>';
-                    }
+                    str += '<div class="isotope-item col-md-4 col-sm-6 ' + val.category + '">' +
+                        '<a href="#">' +
+                        '<img class="project-image" id="list-img' + val.seq + '" src="' + val.img + '">' +
+                        '<div class="overlay">' +
+                        '<div class="project-title">' + val.title + '<br>' +
+                        '<span class="project-duration">' + val.sdate + ' ~ ' + val.edate + '</span></div>' +
+                        '</div></a></div>';
                 });
                 $(".isotope-container").html(str);
+
+                list_filter();
 
             }, fail: function () {
                 alert("실패")
@@ -27,12 +27,49 @@
         })
     };
 
+    /*메인 리스트 필터링*/
+    list_filter = function () {
+        var data = $(".isotope-item").filter(":visible");
+        $.each(data, function (index, val) {
+            if (index >= 9) {
+                $(val).css({"display": "none", "position":"absolute"});
+                $(this).attr('my-filter', "filter");
+            }
+        })
+    };
+
     /*초기 세팅*/
     project_list_load();
-    
+
+    /*포트폴리오 클릭 필터링*/
+    $('.isotope-nav li').click(function () {
+        var height = $(".portfolio").height();
+        var me=$(this);
+
+        var data = $(".isotope-item");
+        $.each(data, function (index, val) {
+            var me = $(val);
+            if (me.attr('my-filter') == 'filter') {
+                me.css({"display": "", "position":""});
+                me.attr("my-filter", "");
+            }
+        });
+
+        var filterValue = me.attr('data-filter');
+        $(".isotope-container").isotope({filter: filterValue});
+
+        if(me.attr('data-filter') == '*'){
+            list_filter();
+            $(".portfolio").css("height", height)
+        }else {
+            setTimeout("list_filter();", 500);
+            $(".portfolio").css("height", height)
+        }
+    });
+
     /* 프로젝트 등록 */
-    $(".write-btn").click(function() {
-    	var check = true;
+    $(".write-btn").click(function () {
+        var check = true;
         var category = $('#w_category').attr("value");
         var sdate = $('#sdatepicker').val();
         var edate = $('#edatepicker').val();
@@ -41,14 +78,14 @@
         var img = imageParse(content);
         var url = $('#w_url').val();
         if (sdate == null || sdate == '' || edate == null || edate == '') {
-        	$('#dateInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
-        	check = false;
+            $('#dateInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
+            check = false;
         }
         if (title == null || title == '') {
             $('#titleInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
             check = false;
         }
-        if ( content ==null || content == "" || content.length < 1) {
+        if (content == null || content == "" || content.length < 1) {
             $('#contentInput').css({'background-color': '##f2dede', 'border-color': '#ebccd1'});
             check = false;
         }
@@ -60,20 +97,21 @@
         object.content = content;
         object.img = img;
         object.url = url;
-        
+
         if (check === true) {
             $.ajax({
-            	url: "project",
+                url: "project",
                 method: "post",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(object),
                 success: function (data) {
                     if (data.result == "SUCS") {
-                    	$('#sdatepicker').val('');
-                    	$('#edatepicker').val('');
-                    	$('#w_title').val('');
-                    	CKEDITOR.instances.write_content.setData('');
-                    	$("#show-message-close").click();
+                        $('#sdatepicker').val('');
+                        $('#edatepicker').val('');
+                        $('#w_title').val('');
+                        CKEDITOR.instances.write_content.setData('');
+                        $(".close").click();
+                        project_list_load();
                     } else {
                         show_message("실패")
 
@@ -90,12 +128,12 @@
             show_message("빈칸이 있어요 전부 입력해주세요");
         }
     });
-    
+
     /*메인에 뜰 이미지 파싱*/
-    imageParse = function(content) {
-    	var contentArray = [];
-    	if(content!=null && content!="") {
-    	    if(content.indexOf("<img")) {
+    imageParse = function (content) {
+        var contentArray = [];
+        if (content != null && content != "") {
+            if (content.indexOf("<img")) {
                 contentArray = content.split('alt="" src="');
                 if (contentArray[1] != null && contentArray[1] != "") {
                     var src = contentArray[1].split('"');
@@ -136,7 +174,7 @@
             dates.not(this).datepicker("option", option, date);
         }
     });
-    
+
     $('.clear-completed').click(function () {
         if ($('.filters li a.selected').attr('href').split('/')[1] == 'active') {
             /*만약 선택되있던 filter 가 active라면, 디폴트로 돌린다*/
@@ -148,8 +186,8 @@
 
     });
 
-    $(document).ready(function(e) {
-        $('.with-hover-text, .regular-link').click(function(e){
+    $(document).ready(function (e) {
+        $('.with-hover-text, .regular-link').click(function (e) {
             e.stopPropagation();
         });
 
@@ -158,7 +196,7 @@
          * Hover text for the last slide
          ***************/
         $('.with-hover-text').hover(
-            function(e) {
+            function (e) {
                 $(this).css('overflow', 'visible');
                 $(this).find('.hover-text')
                     .show()
@@ -173,7 +211,7 @@
                         'linear'
                     );
             },
-            function(e) {
+            function (e) {
                 var obj = $(this);
                 $(this).find('.hover-text')
                     .animate(
@@ -183,9 +221,9 @@
                         },
                         'fast',
                         'linear',
-                        function() {
+                        function () {
                             $(this).hide();
-                            $( obj ).css('overflow', 'hidden');
+                            $(obj).css('overflow', 'hidden');
                         }
                     );
             }
@@ -198,24 +236,24 @@
          * = Controls active menu *
          * Hover text for the last slide
          *************************/
-        $(function() {
+        $(function () {
             var pause = 10;
-            $(document).scroll(function(e) {
-                delay(function() {
+            $(document).scroll(function (e) {
+                delay(function () {
 
                         var tops = [];
 
-                        $('.story').each(function(index, element) {
-                            tops.push( $(element).offset().top - 200 );
+                        $('.story').each(function (index, element) {
+                            tops.push($(element).offset().top - 200);
                         });
 
                         var scroll_top = $(this).scrollTop();
 
                         var lis = $('.nav > li');
 
-                        for ( var i=tops.length-1; i>=0; i-- ) {
-                            if ( scroll_top >= tops[i] ) {
-                                menu_focus( lis[i], i+1 );
+                        for (var i = tops.length - 1; i >= 0; i--) {
+                            if (scroll_top >= tops[i]) {
+                                menu_focus(lis[i], i + 1);
                                 break;
                             }
                         }
@@ -226,18 +264,18 @@
         });
     });
 
-    var delay = (function(){
+    var delay = (function () {
         var timer = 0;
-        return function(callback, ms){
-            clearTimeout (timer);
+        return function (callback, ms) {
+            clearTimeout(timer);
             timer = setTimeout(callback, ms);
         };
     })();
 
-    menu_focus = function( element, i ) {
-        if ( $(element).hasClass('active') ) {
-            if ( i == 4 ) {
-                if ( $('.navbar').hasClass('inv') == false )
+    menu_focus = function (element, i) {
+        if ($(element).hasClass('active')) {
+            if (i == 4) {
+                if ($('.navbar').hasClass('inv') == false)
                     return;
             } else {
                 return;
@@ -309,7 +347,7 @@
         var menu_item = $('.menu-nav').find('li');
 
         menu_item.hover(
-            function(e) {
+            function (e) {
                 var icon = $(this).find('.icon');
 
                 var left_pos = icon.offset().left - $('.menu-nav').offset().left;
@@ -318,11 +356,11 @@
                 var hover_bar = $('<div class="active-menu special-active-menu"></div>')
                     .css('left', left_pos)
                     .css('width', el_width)
-                    .attr('id', 'special-active-menu-' + $(this).data('slide') );
+                    .attr('id', 'special-active-menu-' + $(this).data('slide'));
 
-                $('.active-menu').after( hover_bar );
+                $('.active-menu').after(hover_bar);
             },
-            function(e) {
+            function (e) {
                 $('.special-active-menu').remove();
             }
         );

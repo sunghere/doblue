@@ -417,6 +417,7 @@ h3 {
     padding: 5px 20px;
     border: solid 1px #eeeeee;
     margin-bottom: 2px;
+    cursor: pointer;
 }
 
 .isotope-nav li.active, .isotope-nav li:hover {
@@ -473,6 +474,13 @@ h3 {
     .isotope-nav li {
         display: block;
     }
+}
+
+.icon-next {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    font-size: 30px;
 }
 
 /*Main contact*/

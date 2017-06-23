@@ -98,10 +98,10 @@
                 <!-- isotope filters start -->
                 <div class="filters text-align">
                     <ul class="isotope-nav">
-                        <li class="active" data-filter="*">All</a></li>
-                        <li data-filter=".web-programming">Web Programming</a></li>
-                        <li data-filter=".web-design">Web design</a></li>
-                        <li data-filter=".editorial-design">Editorial design</a></li>
+                        <li class="active" data-filter="*">All</li>
+                        <li data-filter=".web-programming">Web Programming</li>
+                        <li data-filter=".web-design">Web design</li>
+                        <li data-filter=".editorial-design">Editorial design</li>
                     </ul>
                 </div>
                 <!-- isotope filters end -->
@@ -110,6 +110,7 @@
 
             </div>
         </div>
+        <!--<div class="icon-next"><i class="fa fa-plus-square" aria-hidden="true"></i></div>-->
     </div>
     <div class="section slide" id="section4" data-slide="4">
         <div class="intro">
@@ -274,12 +275,6 @@
 
         var lis = $('.nav > li');
         menu_focus(lis[0], 1);
-
-        /*포트폴리오 필터링*/
-        $('.isotope-nav').on('click', 'li', function () {
-            var filterValue = $(this).attr('data-filter');
-            $(".isotope-container").isotope({filter: filterValue});
-        });
 
         $("#project-write").click(function () {
             $("#write-modal-btn").click();
