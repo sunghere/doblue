@@ -27,8 +27,10 @@ public class ProjectController { /* Rest 컨트롤러 */
         this.service = service;
     }
 
-    @GetMapping(value = "/{seq}", consumes = "application/json") /* 하나 가져오기 */
-    Project projectList(@PathVariable Integer seq, @RequestBody Project project) throws Exception {
+    @GetMapping(value = "/{seq}") /* 하나 가져오기 */
+    Project projectDetail(@PathVariable Integer seq) throws Exception {
+        Project project = new Project();
+        project.setSeq(seq);
         return service.detail(project);
     }
 
