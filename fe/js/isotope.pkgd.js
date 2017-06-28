@@ -862,9 +862,9 @@
             onEnd: {}
         };
 
-        this.css({
+       /* this.css({
             position: 'absolute'
-        });
+        });*/
     };
 
 // trigger specified handler for event type
@@ -2379,7 +2379,6 @@
             this.items = isotope.filteredItems;
             this.size = isotope.size;
         }
-
     }
 
     var proto = LayoutMode.prototype;
@@ -2862,8 +2861,8 @@
         }
 
         var position = {
-            x: this.x,
-            y: this.y
+            x: '',
+            y: ''
         };
 
         this.maxY = Math.max( this.maxY, this.y + item.size.outerHeight );
