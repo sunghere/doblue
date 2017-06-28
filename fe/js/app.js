@@ -497,6 +497,9 @@
         $('#show-message-btn').click();
     };
 
+    $('.send-mail button').click(function () {
+        mailSend();
+    })
     function mailSend() {
         var email = $('#email').val();
         var name = $('#name').val();
@@ -532,8 +535,12 @@
                 'title': "Doblue portfolio 사이트 메일<" + name + ">", "email": email, 'content': content
             }), success: function (data) {
 
-                if (data.result) {
+                if (data.result == "SUCS") {
                     show_message("[Success]Thanks - ");
+                    $('#content').val('')
+                } else {
+
+                    show_message("[Error]try later..")
                 }
 
             }
