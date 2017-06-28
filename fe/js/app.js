@@ -156,19 +156,33 @@
         project_detail_load(seq);
     });
 
+    /* 총 작업일 */
+    var project_period = function (sdate, edate) {
+        var sdateArray = sdate.split("-");
+        var edateArray = edate.split("-");
+
+        var sdateObj = new Date(sdateArray[0], Number(sdateArray[1]) - 1, sdateArray[2]);
+        var edateObj = new Date(edateArray[0], Number(edateArray[1]) - 1, edateArray[2]);
+
+        var between = Math.floor((edateObj.getTime() - sdateObj.getTime()) / 1000 / 60 / 60 / 24);
+        if (between < 0) return 0;
+        else return between;
+    };
+
     /*프로젝트 디테일*/
     var project_detail_load = function (seq) {
         $.ajax({
             url: "project/" + seq,
             method: "get",
             success: function (data) {
-                var str1 = data.title;
+                var str1 = '<div class="title">'+data.title+'</div>' +
+                    '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
+                    ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
                 var str2 = '<div class="content">' + data.content + '</div>' +
-                    '<div class="duration">' + data.sdate + ' ~ ' + data.edate + '</div>' +
                     '<div class="url">' + data.url + '</div>';
                 $(".detail-title").html(str1);
                 $(".detail-body").html(str2);
-
+                $(".content img").attr("style", "width:100%; height:auto;");
 
             }, fail: function () {
                 alert("실패")

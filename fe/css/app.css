@@ -486,14 +486,22 @@ h3 {
 }
 
 /*detail modal*/
+.detail-title {
+    display: inline-block;
+    margin
+}
 .detail-body {
+    width: 98%;
+    margin: 0 auto;
     overflow-x: hidden;
     overflow-y: scroll;
 }
-
-.content img {
-    width: 100%;
-    height: auto;
+.detail-title div, .detail-body div {
+    margin-bottom: 5px;
+}
+.duration {
+    font-size: 15px;
+    color: #666666;
 }
 
 /*Main contact*/
