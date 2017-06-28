@@ -29,7 +29,7 @@
 
     /*메인 리스트 필터링*/
     list_filter = function (filter) {
-        var data = $(".isotope-item").filter(filter+":visible");
+        var data = $(".isotope-item").filter(filter + ":visible");
         $.each(data, function (index, val) {
             var me = $(this);
             me.attr("data-index", index);
@@ -143,7 +143,7 @@
 
         } else {
 
-            setTimeout("list_filter('"+filterValue+"');", 500);
+            setTimeout("list_filter('" + filterValue + "');", 500);
 
             setTimeout("nextIcon_show();", 600);
 
@@ -175,7 +175,7 @@
             url: "project/" + seq,
             method: "get",
             success: function (data) {
-                var str1 = '<div class="title">'+data.title+'</div>' +
+                var str1 = '<div class="title">' + data.title + '</div>' +
                     '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
                     ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
                 var str2 = '<div class="content">' + data.content + '</div>' +
@@ -496,5 +496,48 @@
 
         $('#show-message-btn').click();
     };
+
+    function mailSend() {
+        var email = $('#email').val();
+        var name = $('#name').val();
+        var content = $('#message').val();
+
+
+        var blank_pattern = /[\s]/g;
+        var email_pattern = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+
+        if (email.length < 5 || blank_pattern.test(email) || !(email_pattern.test(email))) {
+
+            show_message("Oops.. Email Check plz")
+
+            return false;
+        }
+        if (name.length < 3 || blank_pattern.test(name)) {
+            show_message("Oops.. name Check plz");
+            return false;
+        }
+
+        if (content.length < 10) {
+            show_message("Oops.. write content plz")
+            return false;
+        }
+
+
+        $.ajax({
+            url: "email",
+            method: "post",
+            dataType: 'text json', // JSON 타입이 아닐경우 제거
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                'title': "Doblue portfolio 사이트 메일<" + name + ">", "email": email, 'content': content
+            }), success: function (data) {
+
+                if (data.result) {
+                    show_message("[Success]Thanks - ");
+                }
+
+            }
+        })
+    }
 })
 (jQuery);

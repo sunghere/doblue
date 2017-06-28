@@ -75,7 +75,13 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <version>1.5.2.RELEASE</version>
         </dependency>
-
+        <!--메일건-->
+        <!-- https://mvnrepository.com/artifact/net.sargue/mailgun -->
+        <dependency>
+            <groupId>net.sargue</groupId>
+            <artifactId>mailgun</artifactId>
+            <version>1.4.0</version>
+        </dependency>
 
     </dependencies>
     <build>
