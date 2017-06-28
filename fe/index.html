@@ -128,18 +128,15 @@
                     </div>
                     <div class="col-md-6 col-sm-6 send-mail">
                         <div>
-                            <input type="text" class="form-control" id="name" placeholder="Name" name="name"
-                                   required>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
                             <i class="fa fa-user form-control-feedback"></i>
                         </div>
                         <div>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email"
-                                   name="email" required>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" required>
                             <i class="fa fa-envelope form-control-feedback"></i>
                         </div>
                         <div>
-                                <textarea class="form-control" rows="8" id="message" placeholder="Message"
-                                          name="message" required></textarea>
+                            <textarea class="form-control" rows="8" id="message" placeholder="Message" required></textarea>
                             <i class="fa fa-pencil form-control-feedback"></i>
                         </div>
                         <button type="button" class="btn btn-default">Send</button>
@@ -221,6 +218,8 @@
                 <div class="row detail-body">
 
                 </div>
+                <div id="disqus_thread"></div>
+
             </div>
         </div>
     </div>
@@ -246,6 +245,21 @@
     </div>
 </div>
 <!-- Scripts here. Don't remove ↓ -->
+<script>
+
+    var disqus_config = function () {
+        this.page.url = "doblue.ga"+'/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier ="doblue.ga"+'/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://doblue.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -258,7 +272,7 @@
     $(document).ready(function () {
         $('#fullpage').fullpage({
             anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
-            sectionsColor: ['#FFFFFF', '#7E8F7C', '#d2deea', '#4e8e4d'],
+            sectionsColor: ['#FFFFFF', '#7E8F7C', '#d2deea', '#ffffff'],
             menu: '#menu',
             navigation: true,
             navigationPosition: 'right',

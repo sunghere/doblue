@@ -184,6 +184,14 @@
                 $(".detail-body").html(str2);
                 $(".content img").attr("style", "width:100%; height:auto;");
 
+
+                DISQUS.reset({
+                    reload: true,
+                    config: function () {
+                        this.page.identifier = "doblue.ga"+data.seq;
+                        this.page.url = "http://doblue.ga/#!"+data.seq;
+                    }
+                });
             }, fail: function () {
                 alert("실패")
             }
