@@ -405,7 +405,7 @@ h3 {
     vertical-align: initial;
 }
 .portfolio {
-    margin-top: 8%;
+    margin-top: 7%;
 }
 .isotope-nav {
     width: 90%;
@@ -449,7 +449,7 @@ h3 {
 }
 
 .isotope-item {
-
+    margin: 10px 0;
 }
 
 .isotope-item:hover .overlay {
@@ -481,6 +481,19 @@ h3 {
     right: 5%;
     bottom: 5%;
     font-size: 30px;
+    display: none;
+    cursor: pointer;
+}
+
+/*detail modal*/
+.detail-body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.content img {
+    width: 100%;
+    height: auto;
 }
 
 /*Main contact*/
