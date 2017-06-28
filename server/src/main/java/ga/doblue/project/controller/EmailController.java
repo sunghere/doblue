@@ -26,10 +26,12 @@ public class EmailController {
         AjaxResult ajaxResult = new AjaxResult();
         try {
             service.sendMail(email);
+            ajaxResult.setResult("SUCS");
+
         } catch (Exception e) {
+            ajaxResult.setResult("FAIL");
 
         }
-        ajaxResult.setResult("SUCS");
 
         return new ResponseEntity<AjaxResult>(ajaxResult, HttpStatus.OK);
 
