@@ -1,11 +1,13 @@
 package ga.doblue.project.model;
 
+import java.io.Serializable;
+
 /**
  * Created by SungHere on 2017-06-28.
  */
 
 
-public class Email {
+public class Email implements Serializable{
     private String title;
     private String name;
     private String email;
@@ -53,5 +55,15 @@ public class Email {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Email{" +
+                "title='" + title + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", content='" + content + '\'' +
+                '}';
     }
 }
