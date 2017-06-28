@@ -392,14 +392,6 @@ h3 {
     border-radius: 250px;
 }
 
-.modal-dialog, .modal-content {
-    height: 90%;
-}
-
-.write-title {
-    display: inline-block;
-}
-
 /* Main Portfolio */
 #section3 .fp-tableCell {
     vertical-align: initial;
@@ -485,10 +477,22 @@ h3 {
     cursor: pointer;
 }
 
+/*modal*/
+.write-title {
+    display: inline-block;
+}
+.line_none {
+    border-bottom: none;
+}
+#message-modal {
+    top: 35%;
+}
+#my-message {
+    margin-bottom: 20px;
+}
 /*detail modal*/
 .detail-title {
     display: inline-block;
-    margin
 }
 .detail-body {
     width: 98%;
@@ -505,6 +509,9 @@ h3 {
 }
 
 /*Main contact*/
+.send-mail div {
+    margin-bottom: 15px;
+}
 .contact {
     width:80%;
     margin: 2% auto;
