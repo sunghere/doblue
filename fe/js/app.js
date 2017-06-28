@@ -537,7 +537,7 @@
             console.log(data);
                 if (data.result == "SUCS") {
                     show_message("[Success]Thanks - ");
-                    $('#content').val('')
+                    $('#message').val('')
                 } else {
 
                     show_message("[Error]try later..")
