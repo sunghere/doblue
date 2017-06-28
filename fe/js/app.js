@@ -499,7 +499,7 @@
 
     $('.send-mail button').click(function () {
         mailSend();
-    })
+    });
     function mailSend() {
         var email = $('#email').val();
         var name = $('#name').val();
@@ -511,7 +511,7 @@
 
         if (email.length < 5 || blank_pattern.test(email) || !(email_pattern.test(email))) {
 
-            show_message("Oops.. Email Check plz")
+            show_message("Oops.. Email Check plz");
 
             return false;
         }
@@ -521,7 +521,7 @@
         }
 
         if (content.length < 10) {
-            show_message("Oops.. write content plz")
+            show_message("Oops.. write content plz");
             return false;
         }
 
@@ -532,9 +532,9 @@
             dataType: 'text json', // JSON 타입이 아닐경우 제거
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
-                'title': "Doblue portfolio 사이트 메일<" + name + ">", "email": email, 'content': content
+                'title': "Doblue portfolio 사이트 메일<" + name + ">", "email": email, 'content': content,'name':name
             }), success: function (data) {
-
+            console.log(data);
                 if (data.result == "SUCS") {
                     show_message("[Success]Thanks - ");
                     $('#content').val('')

@@ -24,14 +24,12 @@ public class EmailController {
     @PostMapping/* Insert (프로젝트 추가 ) */
     ResponseEntity<?> mailSend(@RequestBody Email email) throws Exception {
         AjaxResult ajaxResult = new AjaxResult();
-        System.out.println(email);
         try {
             service.sendMail(email);
-            ajaxResult.setResult("SUCS");
         } catch (Exception e) {
-            ajaxResult.setResult("FAIL");
 
         }
+        ajaxResult.setResult("SUCS");
 
         return new ResponseEntity<AjaxResult>(ajaxResult, HttpStatus.OK);
 
