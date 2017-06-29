@@ -62,17 +62,22 @@
     <div class="section slide" id="section2" data-slide="2">
         <div class="container-fluid">
             <div class="row">
-                <div class="whois col-md-6 col-sm-12">
-                    <div class="introduce">
-                        <div class="pic center-block"></div>
-                        <h3>YOON</h3>
-                        <p>Hello</p>
+                <div class="whois col-md-12">
+                    <div class="intro-pic col-md-3 col-sm-12">
+                        <div class="pic center-block sunghee"></div>
+                        <h3>SUNG HEE YOON</h3>
+                    </div>
+                    <div class="introduce col-md-9 col-sm-12">
+                        <p>전공: 정보통신과 네트워크전공 (Major: Department of Information and Communication, Network)</p>
                     </div>
                 </div>
-                <div class="whois col-md-6 col-sm-12">
-                    <div class="introduce">
-                        <div class="pic center-block"></div>
-                        <h3>YOON</h3>
+                <div class="whois col-md-12">
+                    <div class="introduce col-md-9 col-sm-12">
+                        <p>Worked as a web-designer for 2 years</p>
+                    </div>
+                    <div class="intro-pic col-md-3 col-sm-12">
+                        <div class="pic center-block jiyoon"></div>
+                        <h3>JIYOON LEE</h3>
                     </div>
                 </div>
             </div>
@@ -136,7 +141,8 @@
                             <i class="fa fa-envelope form-control-feedback"></i>
                         </div>
                         <div>
-                            <textarea class="form-control" rows="8" id="message" placeholder="Message" required></textarea>
+                            <textarea class="form-control" rows="8" id="message" placeholder="Message"
+                                      required></textarea>
                             <i class="fa fa-pencil form-control-feedback"></i>
                         </div>
                         <button type="button" class="btn btn-default">Send</button>
@@ -227,7 +233,7 @@
 <div id="show-message-btn" data-toggle="modal" data-target="#message-modal"
      type="button" hidden="hidden">
 </div>
-<%--메시지를 띄우는용도의 창 show_message사용--%>
+<!--메시지를 띄우는용도의 창 show_message사용-->
 <div id="message-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -248,18 +254,19 @@
 <script>
 
     var disqus_config = function () {
-        this.page.url = "doblue.ga"+'/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier ="doblue.ga"+'/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "doblue.ga" + '/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "doblue.ga" + '/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
         s.src = 'https://doblue.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

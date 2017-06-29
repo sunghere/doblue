@@ -381,15 +381,23 @@ h3 {
 
 /* Main introduce */
 .whois {
-    vertical-align: middle;
-    margin: 10% 0;
+    width: 70%;
+    margin: 30px 15% 0;
 }
 
 .pic {
     width: 250px;
     height: 250px;
-    background-color: #eee;
     border-radius: 250px;
+}
+
+.sunghee {
+    background: url("../img/sunghee.jpg") no-repeat center;
+    background-size: 250px;
+}
+.jiyoon {
+    background: url("../img/jiyoon.jpg") no-repeat center;
+    background-size: 250px;
 }
 
 /* Main Portfolio */

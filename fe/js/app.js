@@ -1,5 +1,5 @@
 
-var prve_filter = '*';
+var prev_filter = '*';
 
 /*리스트 불러오기 + 초기화*/
 var project_list_load = function () {
@@ -9,7 +9,7 @@ var project_list_load = function () {
         success: function (data) {
             var str = '';
             $.each(data, function (index, val) {
-                str += '<div class="isotope-item col-md-4 col-sm-6 ' + val.category + '" data-seq="' + val.seq + '">' +
+                str += '<div class="isotope-item col-md-3 col-sm-6 ' + val.category + '" data-seq="' + val.seq + '">' +
                     '<a href="#" data-target="#detailModal" data-toggle="modal">' +
                     '<img class="project-image" src="' + val.img + '">' +
                     '<div class="overlay">' +
@@ -19,8 +19,8 @@ var project_list_load = function () {
             });
             $(".isotope-container").html(str);
 
-            list_filter('');
-            nextIcon_show();
+            /*list_filter('');
+            nextIcon_show();*/
 
         }, fail: function () {
             alert("실패")
@@ -156,7 +156,7 @@ project_list_load();
 
 /*포트폴리오 클릭 필터링*/
 $('.isotope-nav li').click(function () {
-    var data = $(".isotope-item");
+    /*var data = $(".isotope-item");
     $.each(data, function (index, val) {
         var me = $(val);
 
@@ -169,13 +169,13 @@ $('.isotope-nav li').click(function () {
 
         }
 
-    });
+    });*/
 
     var me = $(this);
     var filterValue = me.attr('data-filter');
     $(".isotope-container").isotope({filter: filterValue});
 
-    if (filterValue == '*') {
+    /*if (filterValue == '*') {
         setTimeout("list_filter('')", 500);
 
         setTimeout("nextIcon_show();", 600);
@@ -186,7 +186,7 @@ $('.isotope-nav li').click(function () {
 
         setTimeout("nextIcon_show();", 600);
 
-    }
+    }*/
 });
 
 /*프로젝트 디테일 클릭*/

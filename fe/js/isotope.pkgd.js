@@ -862,9 +862,9 @@
             onEnd: {}
         };
 
-       /* this.css({
+        this.css({
             position: 'absolute'
-        });*/
+        });
     };
 
 // trigger specified handler for event type
@@ -2861,8 +2861,8 @@
         }
 
         var position = {
-            x: '',
-            y: ''
+            x: this.x,
+            y: this.y
         };
 
         this.maxY = Math.max( this.maxY, this.y + item.size.outerHeight );
