@@ -520,10 +520,16 @@ h3 {
 .send-mail div {
     margin-bottom: 15px;
 }
+.send-mail i {
+    top: 15px;
+}
 .contact {
     width:80%;
     margin: 2% auto;
 }
 .form-control {
     height: 45px;
+}
+.contact-info>div:first-child {
+    border-bottom: solid 1px #333333;
 }
