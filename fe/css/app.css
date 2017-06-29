@@ -399,6 +399,26 @@ h3 {
     background: url("../img/jiyoon.jpg") no-repeat center;
     background-size: 250px;
 }
+.progress {
+    height: 15px;
+    background-color: #fff;
+}
+.skill-header {
+    border-bottom: solid 2px midnightblue;
+    margin-bottom: 10px;
+    font-weight: 900;
+    font-size: x-large;
+    text-align: right;
+    font-family: inherit;
+    color: midnightblue;
+}
+.skill-name {
+    padding-bottom: 5px;
+}
+.progress-adjust {
+    height: 10px;
+    margin-bottom: 0px;
+}
 
 /* Main Portfolio */
 #section3 .fp-tableCell {
