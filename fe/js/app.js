@@ -218,7 +218,7 @@ var project_detail_load = function (seq) {
                 '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
                 ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
             var str2 = '<div class="content">' + data.content + '</div>' +
-                '<div class="url">' + data.url + '</div>';
+                '<div class="url"><a href="'+data.url+'" target="_blank">' + data.url + '</a></div>';
             $(".detail-title").html(str1);
             $(".detail-body").html(str2);
             $(".content img").attr("style", "width:100%; height:auto;");
