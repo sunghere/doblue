@@ -5,7 +5,7 @@ form, fieldset, input, textarea, p, blockquote, th, td {
     margin: 0;
 }
 
-a {
+a, a:hover {
     text-decoration: none;
 }
 
@@ -511,16 +511,16 @@ h3 {
 }
 
 .project-title {
+
+}
+
+.overlay-text {
     color: white;
-    font-size: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-}
-
-.project-duration {
     font-size: 13px;
 }
 
@@ -607,4 +607,23 @@ h3 {
 .info-name {
     font-size: 25px;
     margin-bottom: 5px;
+}
+
+.btn.btn-primary {
+    background-color: transparent;
+    border: 1px solid #f0f0f0;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+.btn.btn-primary:hover {
+    background-color: #eeeeee;
+    opacity: 0.7;
+}
+
+.btn {
+    border: 0;
+    border-radius: 290px;
+    font-family: 'Helvetica Neue', 'Nanum Gothic', Arial, sans-serif;
 }

@@ -11,11 +11,12 @@ var project_list_load = function () {
             $.each(data, function (index, val) {
                 str += '<div class="isotope-item col-md-3 col-sm-6 ' + val.category + '" data-seq="' + val.seq + '">' +
                     '<a href="#" data-target="#detailModal" data-toggle="modal">' +
-                    '<img class="project-image" src="' + val.img + '">' +
+                    '<img class="project-image" src="' + val.img + '"/>' +
                     '<div class="overlay">' +
-                    '<div class="project-title">' + val.title + '<br>' +
-                    '<span class="project-duration">' + val.sdate + ' ~ ' + val.edate + '</span></div>' +
-                    '</div></a></div>';
+                    '<div class="overlay-text">' + val.sdate + ' ~ ' + val.edate + '</div>' +
+                    '</div>' +
+                    '<div class="project-title">'+val.title+'</div>' +
+                    '</a></div>';
             });
             $(".isotope-container").html(str);
 
@@ -218,7 +219,7 @@ var project_detail_load = function (seq) {
                 '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
                 ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
             var str2 = '<div class="content">' + data.content + '</div>' +
-                '<div class="url"><a href="'+data.url+'" target="_blank">' + data.url + '</a></div>';
+                '<div class="url btn btn-primary"><a href="'+data.url+'" target="_blank"> 프로젝트 보러가기</a></div>';
             $(".detail-title").html(str1);
             $(".detail-body").html(str2);
             $(".content img").attr("style", "width:100%; height:auto;");
