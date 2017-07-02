@@ -1,5 +1,35 @@
-
 var prev_filter = '*';
+
+/*로그인*/
+$("#login_btn").click(function () {
+    if ($("#login_id").val() == "") {
+        show_message($("#login_id").attr("data-msg") + " 입력해 주십시요.");
+        $("#login_userid").focus();
+    } else if ($("#login_pwd").val() == "") {
+        show_message($("#login_pwd").attr("data-msg") + " 입력해 주십시요.");
+        $("#login_pwd").focus();
+    } else {
+        $.ajax({
+            url: "login",
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({"id": $("input[id='login_id']").val(), "pwd": $("input[id='login_pwd']").val()}),
+            success: function (data) {
+                console.log(data);
+                if (data.result == "SUCS") {
+                    $(".loginexit").click();
+                    show_message("Success");
+                    $('#login').remove();
+                    $('#write-modal-btn').show();
+                } else {
+                    $('#loginErrmsg').html("<i class='icon ion-ios-close'></i>아이디 혹은 비밀번호를 확인해 주세요").css({
+                        "color": "red"
+                    });
+                }
+            }
+        })
+    }
+});
 
 /*리스트 불러오기 + 초기화*/
 var project_list_load = function () {
@@ -15,13 +45,13 @@ var project_list_load = function () {
                     '<div class="overlay">' +
                     '<div class="overlay-text">' + val.sdate + ' ~ ' + val.edate + '</div>' +
                     '</div>' +
-                    '<div class="project-title">'+val.title+'</div>' +
+                    '<div class="project-title">' + val.title + '</div>' +
                     '</a></div>';
             });
             $(".isotope-container").html(str);
 
             /*list_filter('');
-            nextIcon_show();*/
+             nextIcon_show();*/
 
         }, fail: function () {
             alert("실패")
@@ -158,36 +188,36 @@ project_list_load();
 /*포트폴리오 클릭 필터링*/
 $('.isotope-nav li').click(function () {
     /*var data = $(".isotope-item");
-    $.each(data, function (index, val) {
-        var me = $(val);
+     $.each(data, function (index, val) {
+     var me = $(val);
 
-        me.attr("data-index", "");
+     me.attr("data-index", "");
 
-        if (me.attr('my-filter') == 'filter') {
-            me.css({"display": ""});
+     if (me.attr('my-filter') == 'filter') {
+     me.css({"display": ""});
 
-            me.attr("my-filter", "");
+     me.attr("my-filter", "");
 
-        }
+     }
 
-    });*/
+     });*/
 
     var me = $(this);
     var filterValue = me.attr('data-filter');
     $(".isotope-container").isotope({filter: filterValue});
 
     /*if (filterValue == '*') {
-        setTimeout("list_filter('')", 500);
+     setTimeout("list_filter('')", 500);
 
-        setTimeout("nextIcon_show();", 600);
+     setTimeout("nextIcon_show();", 600);
 
-    } else {
+     } else {
 
-        setTimeout("list_filter('" + filterValue + "');", 500);
+     setTimeout("list_filter('" + filterValue + "');", 500);
 
-        setTimeout("nextIcon_show();", 600);
+     setTimeout("nextIcon_show();", 600);
 
-    }*/
+     }*/
 });
 
 /*프로젝트 디테일 클릭*/
@@ -219,7 +249,7 @@ var project_detail_load = function (seq) {
                 '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
                 ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
             var str2 = '<div class="content">' + data.content + '</div>' +
-                '<div class="url btn btn-primary"><a href="'+data.url+'" target="_blank"> 프로젝트 보러가기</a></div>';
+                '<div class="url btn btn-primary"><a href="' + data.url + '" target="_blank"> 프로젝트 보러가기</a></div>';
             $(".detail-title").html(str1);
             $(".detail-body").html(str2);
             $(".content img").attr("style", "width:100%; height:auto;");
@@ -355,8 +385,6 @@ $('.clear-completed').click(function () {
     }
     /*위의 이벤트가 일어나기 전까지 딜레이*/
     setTimeout("$('li.completed').find('.destroy').click()", 500);
-
-
 });
 
 $(document).ready(function (e) {
@@ -546,7 +574,6 @@ function mailSend() {
         data: JSON.stringify({
             'title': "Doblue portfolio 사이트 메일<" + name + ">", "email": email, 'content': content, 'name': name
         }), success: function (data) {
-            console.log(data);
             if (data.result == "SUCS") {
                 show_message("[Success]Thanks - ");
                 $('#message').val('')

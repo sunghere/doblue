@@ -9,7 +9,7 @@
         SELECT
             ID,
             NAME
-        FROM SHUSER
+        FROM PTUSER
         WHERE
             ID = #{id} AND PWD = #{pwd}
     </select>

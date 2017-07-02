@@ -49,6 +49,9 @@
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
     </div><!-- /.navbar -->
+    <a href="#" data-toggle="modal" data-target="#loginModal" id="login">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+    </a>
 </header>
 
 <div id="fullpage">
@@ -222,8 +225,7 @@
 
     <!-- 	</div> -->
     <div class="section slide" id="section3" data-slide="3">
-        <div id="project-write"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-        <div class="portfolio">
+         <div class="portfolio">
             <div class="container-fluid">
 
                 <!-- isotope filters start -->
@@ -255,7 +257,8 @@
                                 <li><i class="fa fa-phone" aria-hidden="true"></i>+82 10 4694 5160</li>
                                 <li><i class="fa fa-envelope-o" aria-hidden="true"></i>sunghere@doblue.ga</li>
                                 <li><i class="fa fa-github" aria-hidden="true"></i><a
-                                        href="http://sunghere.github.io" target="_blank">http://sunghere.github.io</a></li>
+                                        href="http://sunghere.github.io" target="_blank">http://sunghere.github.io</a>
+                                </li>
                             </ul>
                         </div>
                         <div>
@@ -291,7 +294,7 @@
     </div>
 </div>
 
-<input type="hidden" data-target='#writeModal' data-toggle='modal' id="write-modal-btn">
+<a href="#" data-target='#writeModal' data-toggle='modal' id="write-modal-btn" hidden="hidden"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 <!-- 프로젝트 업로드 모달 -->
 <div id="writeModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-md">
@@ -365,6 +368,40 @@
         </div>
     </div>
 </div>
+
+<!-- 로그인 모달 -->
+<div id="loginModal" class="modal fade" role="dialog">
+    <div id="login_bg"
+         style="background-color: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    <div class="modal-dialog login_popup" id="login_popup">
+        <div class="modal-content login_popup_content">
+            <div class="modal-header line_none">
+                <button type="button" class="close" id="login_close" data-dismiss="modal">
+                    <span class='loginexit' aria-hidden="true">x</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="title_Type">
+                    For Admin
+                </h2>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="login_id" data-msg="ID" class="form-control input-sm"
+                       placeholder="ID"
+                       name="id"
+                       size="15">
+                <br>
+                <input type="password" id="login_pwd" data-msg="패스워드" title="패스워드" class="form-control"
+                       placeholder="PASSWORD" name="pwd"
+                       size="15"><br>
+                <button class="btn btn-primary btn-default" type="button" id="login_btn" title="로그인">로그인
+                </button>
+
+                <div id='loginErrmsg' class="subtitle_Type_mb50"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
 <div id="show-message-btn" data-toggle="modal" data-target="#message-modal"
      type="button" hidden="hidden">
 </div>
@@ -425,9 +462,8 @@
         var lis = $('.nav > li');
         menu_focus(lis[0], 1);
 
-        $("#project-write").click(function () {
-            $("#write-modal-btn").click();
-            write_init();
+        $("#write-modal-btn").click(function () {
+                write_init();
         });
 
         var write_init = function () {

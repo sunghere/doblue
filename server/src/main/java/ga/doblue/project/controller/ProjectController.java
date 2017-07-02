@@ -1,6 +1,7 @@
 package ga.doblue.project.controller;
 
 import ga.doblue.project.Service.ProjectService;
+import ga.doblue.project.model.PTUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import ga.doblue.project.Service.ProjectServiceImpl;
 import ga.doblue.project.help.AjaxResult;
 import ga.doblue.project.model.Project;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -40,13 +42,19 @@ public class ProjectController { /* Rest 컨트롤러 */
     }
 
     @PostMapping/* Insert (프로젝트 추가 ) */
-    ResponseEntity<?> create(@RequestBody Project project) throws Exception {
+    ResponseEntity<?> create(@RequestBody Project project, HttpServletRequest request) throws Exception {
         AjaxResult ajaxResult = new AjaxResult();
-        System.out.println(project);
-        try {
-            service.insert(project);
-            ajaxResult.setResult("SUCS");
-        } catch (Exception e) {
+        PTUser user = (PTUser) request.getSession().getAttribute("login");
+        if (user != null) {
+            try {
+                service.insert(project);
+                ajaxResult.setResult("SUCS");
+            } catch (Exception e) {
+                ajaxResult.setResult("FAIL");
+
+            }
+
+        } else {
             ajaxResult.setResult("FAIL");
 
         }

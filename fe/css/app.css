@@ -358,6 +358,22 @@ h3 {
 .font-blue {
     color: steelblue;
 }
+#write-modal-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    z-index: 9999;
+    color: white;
+}
+#login {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    z-index: 9999;
+    color: white;
+}
 
 /* Main FirstPage */
 #section1 {
