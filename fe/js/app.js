@@ -248,8 +248,10 @@ var project_detail_load = function (seq) {
             var str1 = '<div class="title">' + data.title + '</div>' +
                 '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
                 ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
-            var str2 = '<div class="content">' + data.content + '</div>' +
-                '<div class="url btn btn-primary"><a href="' + data.url + '" target="_blank"> 프로젝트 보러가기</a></div>';
+            var str2 = '<div class="content">' + data.content + '</div>';
+            if (data.url != "http://www.doblue.ga/mirae"){
+                str2 += '<div class="url btn btn-primary"><a href="' + data.url + '" target="_blank"> 프로젝트 보러가기</a></div>';
+            }
             $(".detail-title").html(str1);
             $(".detail-body").html(str2);
             $(".content img").attr("style", "width:100%; height:auto;");
