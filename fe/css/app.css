@@ -500,6 +500,10 @@ h3 {
     margin: 1% auto;
 }
 
+.project-image-wd {
+    width: 100%;
+}
+
 .project-image {
     width: 100%;
     height: 230px;
@@ -520,6 +524,7 @@ h3 {
 
 .isotope-item {
     margin: 10px 0;
+    overflow: hidden;
 }
 
 .isotope-item:hover .overlay {

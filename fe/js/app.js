@@ -40,9 +40,13 @@ var project_list_load = function () {
             var str = '';
             $.each(data, function (index, val) {
                 str += '<div class="isotope-item col-md-3 col-sm-6 ' + val.category + '" data-seq="' + val.seq + '">' +
-                    '<a href="#" data-target="#detailModal" data-toggle="modal">' +
-                    '<img class="project-image" src="' + val.img + '"/>' +
-                    '<div class="overlay">' +
+                    '<a href="#" data-target="#detailModal" data-toggle="modal">';
+                if(val.category == "web-design") {
+                    str += '<img class="project-image-wd" src="' + val.img + '"/>';
+                } else {
+                    str += '<img class="project-image" src="' + val.img + '"/>';
+                }
+                str += '<div class="overlay">' +
                     '<div class="overlay-text">' + val.sdate + ' ~ ' + val.edate + '</div>' +
                     '</div>' +
                     '<div class="project-title">' + val.title + '</div>' +
@@ -249,7 +253,7 @@ var project_detail_load = function (seq) {
                 '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
                 ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
             var str2 = '<div class="content">' + data.content + '</div>';
-            if (data.url != "http://www.doblue.ga/mirae"){
+            if (data.url == "http://www.doblue.ga/mirae"){
                 str2 += '<div class="url btn btn-primary"><a href="' + data.url + '" target="_blank"> 프로젝트 보러가기</a></div>';
             }
             $(".detail-title").html(str1);
