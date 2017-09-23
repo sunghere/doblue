@@ -41,7 +41,7 @@ var project_list_load = function () {
             $.each(data, function (index, val) {
                 str += '<div class="isotope-item col-md-3 col-sm-6 ' + val.category + '" data-seq="' + val.seq + '">' +
                     '<a href="#" data-target="#detailModal" data-toggle="modal">';
-                if(val.category == "web-design") {
+                if (val.category == "web-design") {
                     str += '<img class="project-image-wd" src="' + val.img + '"/>';
                 } else {
                     str += '<img class="project-image" src="' + val.img + '"/>';
@@ -253,8 +253,9 @@ var project_detail_load = function (seq) {
                 '<div class="duration">' + data.sdate + ' ~ ' + data.edate +
                 ', 총 작업일: ' + project_period(data.sdate, data.edate) + '일</div>';
             var str2 = '<div class="content">' + data.content + '</div>';
-            if (data.url == "http://www.doblue.ga/mirae"){
+            if (data.url != "" && data.url != null) {
                 str2 += '<div class="url btn btn-primary"><a href="' + data.url + '" target="_blank"> 프로젝트 보러가기</a></div>';
+                console.log(data.url)
             }
             $(".detail-title").html(str1);
             $(".detail-body").html(str2);
