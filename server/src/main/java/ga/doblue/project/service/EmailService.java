@@ -1,4 +1,4 @@
-package ga.doblue.project.Service;
+package ga.doblue.project.service;
 
 import ga.doblue.project.model.Email;
 import net.sargue.mailgun.Configuration;
