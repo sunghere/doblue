@@ -21,6 +21,8 @@ public class EmailController {
     @Autowired
     EmailService service;
 
+
+    volatile int i =0;
     @PostMapping/* Insert (프로젝트 추가 ) */
     ResponseEntity<?> mailSend(@RequestBody Email email) throws Exception {
         AjaxResult ajaxResult = new AjaxResult();
