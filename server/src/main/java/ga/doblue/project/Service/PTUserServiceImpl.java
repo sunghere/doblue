@@ -1,6 +1,7 @@
-package ga.doblue.project.persistence;
+package ga.doblue.project.Service;
 
 import ga.doblue.project.model.PTUser;
+import ga.doblue.project.persistence.PTUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

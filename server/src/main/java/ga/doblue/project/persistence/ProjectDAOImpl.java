@@ -24,7 +24,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     @Override
     public void update(Project project) throws Exception {
-        sqlSession.update(ns + "delete", project);
+        sqlSession.update(ns + "update", project);
 
     }
 

@@ -1,4 +1,4 @@
-package ga.doblue.project.persistence;
+package ga.doblue.project.Service;
 
 import ga.doblue.project.model.PTUser;
 
