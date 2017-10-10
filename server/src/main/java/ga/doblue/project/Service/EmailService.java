@@ -14,7 +14,7 @@ public class EmailService {
     public void sendMail(Email email) {
         Configuration configuration = new Configuration()
                 .domain("doblue.ga")
-                .apiKey("key-774874982400a67d8a7d511c1f3266da")
+                .apiKey("apikey")
                 .from(email.getName(), email.getEmail());
 
         MailBuilder.using(configuration)
