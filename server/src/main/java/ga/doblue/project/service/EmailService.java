@@ -3,6 +3,7 @@ package ga.doblue.project.service;
 import ga.doblue.project.model.Email;
 import net.sargue.mailgun.Configuration;
 import net.sargue.mailgun.MailBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,11 +11,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EmailService {
-
+    @Value("${mail.key}")
+    private String key;
     public void sendMail(Email email) {
         Configuration configuration = new Configuration()
                 .domain("doblue.ga")
-                .apiKey("apikey")
+                .apiKey(key)
                 .from(email.getName(), email.getEmail());
 
         MailBuilder.using(configuration)
