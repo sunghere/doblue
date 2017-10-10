@@ -1,13 +1,13 @@
 package ga.doblue.project.controller;
 
-import ga.doblue.project.Service.ProjectService;
+import ga.doblue.project.service.ProjectService;
 import ga.doblue.project.model.PTUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import ga.doblue.project.Service.ProjectServiceImpl;
+import ga.doblue.project.service.ProjectServiceImpl;
 import ga.doblue.project.help.AjaxResult;
 import ga.doblue.project.model.Project;
 

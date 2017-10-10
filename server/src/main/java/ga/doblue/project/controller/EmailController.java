@@ -1,6 +1,6 @@
 package ga.doblue.project.controller;
 
-import ga.doblue.project.Service.EmailService;
+import ga.doblue.project.service.EmailService;
 import ga.doblue.project.help.AjaxResult;
 import ga.doblue.project.model.Email;
 import org.springframework.beans.factory.annotation.Autowired;

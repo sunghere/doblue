@@ -3,7 +3,7 @@ package ga.doblue.project.controller;
 import ga.doblue.project.help.AjaxResult;
 import ga.doblue.project.help.EncryptUtil;
 import ga.doblue.project.model.PTUser;
-import ga.doblue.project.Service.PTUserService;
+import ga.doblue.project.service.PTUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
